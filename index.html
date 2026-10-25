@@ -4844,13 +4844,17 @@
         font-size: .62rem !important;
       }
 
-      /* Fix Queue scrolling di mobile */
-      .queue-list {
-        max-height: 400px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-y: contain;
-        touch-action: pan-y;
+      /* FIX: Queue scroll pada perangkat mobile */
+      @media (max-width: 600px) {
+        #playlist .music-queue {
+          max-height: 420px !important;
+          overflow-y: auto !important;
+          overflow-x: hidden;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-y: auto;
+          touch-action: pan-y;
+          scroll-behavior: auto;
+        }
       }
     }
   </style>
