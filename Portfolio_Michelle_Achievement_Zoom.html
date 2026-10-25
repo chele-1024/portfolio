@@ -1,0 +1,6400 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+  <title>Jayanata — Portfolio</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <style>
+    /* =========================================================
+&#xA0;  ROOT
+*========================================================= */
+    :root {
+
+      --grid-line: rgba(36, 16, 18, .10);
+
+      --bg: #efe8de;
+
+      --paper: #f7f2ea;
+
+      --ink: #241012;
+
+      --ink-soft: #5a4247;
+
+      --maroon: #4a1220;
+
+      --maroon-deep: #2c0a12;
+
+      --gold: #c98a3b;
+
+      --gold-soft: #e3bd82;
+
+      --line: rgba(36, 16, 18, .14);
+
+      --card: #ffffff;
+
+      --shadow: rgba(20, 8, 10, .16);
+
+      --cursor-trail: #241012;
+
+      --footer-bg: #4a1220;
+
+      --footer-text: #f7f2ea;
+
+      --footer-muted: rgba(247, 242, 234, .65);
+
+    }
+
+    :root[data-theme="dark"] {
+
+      --grid-line: rgba(255, 255, 255, .13);
+
+      --bg: #0d0d0f;
+
+      --paper: #151518;
+
+      --ink: #f3eee9;
+
+      --ink-soft: #bdb5b5;
+
+      --maroon: #f0d2b1;
+
+      --maroon-deep: #f3eee9;
+
+      --gold: #d9ad7a;
+
+      --gold-soft: #f0d2b1;
+
+      --line: rgba(243, 238, 233, .14);
+
+      --card: #1c1c20;
+
+      --shadow: rgba(0, 0, 0, .45);
+
+      --cursor-trail: #ffffff;
+
+      --footer-bg: #101012;
+
+      --footer-text: #f3eee9;
+
+      --footer-muted: rgba(243, 238, 233, .58);
+
+    }
+
+    /* =========================================================
+&#xA0;  RESET
+*========================================================= */
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    html {
+
+      min-height: 100%;
+
+      overflow-x: hidden;
+
+      overflow-y: auto;
+
+      scroll-padding-top: 100px;
+
+    }
+
+    body {
+
+      min-height: 100vh;
+
+      background: var(--bg);
+
+      color: var(--ink);
+
+      font-family: 'Inter', sans-serif;
+
+      overflow-x: hidden;
+
+      overflow-y: auto;
+
+      cursor: none;
+
+      transition:
+
+        background .5s ease,
+
+        color .5s ease;
+
+    }
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 0;
+
+      pointer-events: none;
+
+      background-image:
+
+        linear-gradient(to right,
+
+          var(--grid-line) 1px,
+
+          transparent 1px),
+
+        linear-gradient(to bottom,
+
+          var(--grid-line) 1px,
+
+          transparent 1px);
+
+      background-size: 88px 88px;
+
+      -webkit-mask-image:
+
+        linear-gradient(to bottom,
+
+          black 0%,
+
+          black 75%,
+
+          transparent 100%);
+
+      mask-image:
+
+        linear-gradient(to bottom,
+
+          black 0%,
+
+          black 75%,
+
+          transparent 100%);
+
+    }
+
+    body>* {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    ::selection {
+
+      background: var(--maroon);
+
+      color: var(--paper);
+
+    }
+
+    h1,
+
+    h2,
+
+    h3,
+
+    h4 {
+
+      font-family: 'Fraunces', serif;
+
+    }
+
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+    button {
+
+      font-family: inherit;
+
+    }
+
+    /* =========================================================
+&#xA0;  WRAPPER
+*========================================================= */
+    .wrap {
+
+      width: min(1500px, 100%);
+
+      margin: 0 auto;
+
+      padding-left: clamp(22px, 4vw, 70px);
+
+      padding-right: clamp(22px, 4vw, 70px);
+
+    }
+
+    /* =========================================================
+&#xA0;  CURSOR
+*========================================================= */
+    #dot,
+
+    #ring,
+
+    .cursor-trail {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      pointer-events: none;
+
+      z-index: 9999;
+
+      border-radius: 50%;
+
+      transform: translate(-50%, -50%);
+
+    }
+
+    #dot {
+
+      width: 7px;
+
+      height: 7px;
+
+      background: var(--ink);
+
+    }
+
+    #ring {
+
+      width: 42px;
+
+      height: 42px;
+
+      border: 1px solid var(--ink);
+
+      transition:
+
+        width .3s ease,
+
+        height .3s ease,
+
+        background .3s ease,
+
+        border-color .3s ease;
+
+    }
+
+    #ring.big {
+
+      width: 72px;
+
+      height: 72px;
+
+      background: var(--cursor-trail);
+
+      opacity: .08;
+
+    }
+
+    .cursor-trail {
+
+      width: 30px;
+
+      height: 30px;
+
+      background: var(--cursor-trail);
+
+      filter: blur(10px);
+
+    }
+
+    #trail1 {
+
+      opacity: .16;
+
+    }
+
+    #trail2 {
+
+      opacity: .10;
+
+      transform:
+
+        translate(-50%, -50%) scale(.75);
+
+    }
+
+    #trail3 {
+
+      opacity: .06;
+
+      transform:
+
+        translate(-50%, -50%) scale(.55);
+
+    }
+
+    @media(hover:none) {
+
+      #dot,
+
+      #ring,
+
+      .cursor-trail {
+
+        display: none;
+
+      }
+
+      body {
+
+        cursor: auto;
+
+      }
+
+    }
+
+    /* =========================================================
+&#xA0;  NAVBAR
+*========================================================= */
+    nav {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      right: 0;
+
+      z-index: 500;
+
+      padding: 22px 0;
+
+      border-bottom: 1px solid transparent;
+
+      transition:
+
+        background .4s ease,
+
+        padding .4s ease,
+
+        border-color .4s ease;
+
+    }
+
+    nav.solid {
+
+      background: color-mix(in srgb,
+
+          var(--paper) 88%,
+
+          transparent);
+
+      backdrop-filter: blur(16px);
+
+      border-color: var(--line);
+
+      padding: 13px 0;
+
+    }
+
+    nav .wrap {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 30px;
+
+    }
+
+    .brand {
+
+      font-family: 'Fraunces', serif;
+
+      font-size: 1.2rem;
+
+      font-weight: 600;
+
+      letter-spacing: .02em;
+
+    }
+
+    .navlinks {
+      display: flex;
+      margin-left: auto;
+      margin-right: 8vw;
+      gap: clamp(18px, 3vw, 40px);
+      font-size: .9rem;
+      color: var(--ink-soft);
+    }
+
+    .navlinks a {
+
+      position: relative;
+
+    }
+
+    .navlinks a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: -5px;
+
+      width: 0;
+
+      height: 1px;
+
+      background: var(--maroon);
+
+      transition: width .3s ease;
+
+    }
+
+    .navlinks a:hover::after {
+
+      width: 100%;
+
+    }
+
+    #theme-btn {
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 50%;
+
+      border: 1px solid var(--line);
+
+      background: transparent;
+
+      color: var(--ink);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      cursor: none;
+
+      font-size: 1rem;
+
+    }
+
+    @media(max-width:700px) {
+
+      .navlinks {
+
+        display: none;
+
+      }
+
+    }
+
+    /* =========================================================
+   HERO
+========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      width: 100%;
+
+      display: flex;
+      align-items: stretch;
+
+      padding: 88px 0 0;
+
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      width: 100%;
+      min-height: calc(100svh - 88px);
+
+      display: grid;
+
+      /* KIRI FOTO — KANAN TEKS */
+      grid-template-columns: 46% 54%;
+
+      align-items: center;
+
+      gap: 0;
+    }
+
+    /* =========================
+   PHOTO
+========================= */
+
+    .hero-photo-frame {
+      position: relative;
+
+      width: 100%;
+      height: calc(100svh - 88px);
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      overflow: visible;
+
+      background: transparent;
+
+      z-index: 2;
+    }
+
+    .hero-photo {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      object-position: center bottom;
+
+      transform: none;
+
+      filter:
+        drop-shadow(0 25px 35px rgba(0, 0, 0, .12));
+
+      transition:
+        transform .6s ease;
+    }
+
+    /* =========================
+   HERO TEXT
+========================= */
+
+    .hero-grid>div:last-child {
+      position: relative;
+
+      z-index: 3;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      padding:
+        40px clamp(30px, 5vw, 90px) 40px 0;
+    }
+
+    .hero-title {
+      margin: 0;
+      max-width: none;
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(5rem, 8vw, 9rem);
+      line-height: .86;
+      letter-spacing: -.015em;
+      color: var(--ink);
+    }
+
+    .hero-name {
+      margin-top: 38px;
+
+      font-size:
+        clamp(1rem, 1.7vw, 1.5rem);
+
+      letter-spacing: .08em;
+
+      text-transform: uppercase;
+
+      color: var(--ink-soft);
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+
+      color: var(--gold);
+
+      font-size:
+        clamp(.85rem, 1.2vw, 1.1rem);
+
+      letter-spacing: .04em;
+    }
+
+    /* =========================
+   DECORATIVE LIGHT
+========================= */
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      left: 35%;
+      top: 42%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          color-mix(in srgb,
+            var(--gold) 9%,
+            transparent),
+          transparent 70%);
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+    /* =========================
+   TABLET
+========================= */
+
+    @media (max-width: 1000px) {
+
+      .hero-grid {
+        grid-template-columns: 44% 56%;
+      }
+
+      .hero-title {
+        font-size:
+          clamp(4.5rem, 9vw, 7rem);
+      }
+
+      .hero-grid>div:last-child {
+        padding-right: 25px;
+      }
+    }
+
+    /* =========================
+   MOBILE
+========================= */
+
+    @media (max-width: 700px) {
+
+      .hero {
+        padding-top: 80px;
+      }
+
+      .hero-grid {
+        min-height: calc(100svh - 80px);
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+          52svh auto;
+
+        text-align: center;
+      }
+
+      .hero-photo-frame {
+        height: 52svh;
+
+        width: 100%;
+
+        justify-content: center;
+
+        align-items: flex-end;
+      }
+
+      .hero-grid>div:last-child {
+        padding:
+          10px 20px 50px;
+
+        align-items: center;
+
+        text-align: center;
+      }
+
+      .hero-title {
+        max-width: none;
+
+        font-size:
+          clamp(4rem, 18vw, 7rem);
+      }
+
+      .hero-name {
+        margin-top: 24px;
+      }
+
+      .hero::after {
+        left: 50%;
+        top: 40%;
+      }
+
+      @media (max-width: 700px) {
+        .skills-grid {
+          grid-template-columns: 1fr;
+          gap: 55px 20px;
+          padding: 40px 20px 80px;
+        }
+
+        .skill-card:nth-child(2),
+        .skill-card:nth-child(5),
+        .skill-card:nth-child(8) {
+          transform: none;
+        }
+      }
+    }
+
+    /* =========================================================
+&#xA0;  SECTIONS
+*========================================================= */
+    section {
+
+      min-height: 100svh;
+
+      padding:
+
+        clamp(90px, 10vw, 160px) 0;
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+    section>.wrap {
+
+      width: 100%;
+
+    }
+
+    .eyebrow {
+
+      margin-bottom: 22px;
+
+      color: var(--gold);
+
+      font-family: 'Fraunces', serif;
+
+      font-size: clamp(.95rem, 1.2vw, 1.15rem);
+
+      font-style: italic;
+
+    }
+
+    .h2 {
+
+      max-width: 14ch;
+
+      font-size: clamp(3rem, 6vw, 7rem);
+
+      line-height: .95;
+
+      font-weight: 600;
+
+      letter-spacing: -.035em;
+
+    }
+
+    .reveal {
+
+      opacity: 0;
+
+      transform: translateY(35px);
+
+      transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+
+    }
+
+    .reveal.show {
+
+      opacity: 1;
+
+      transform: none;
+
+    }
+
+    /* =========================================================
+&#xA0;  PLAYLIST
+*========================================================= */
+    #playlist {
+
+      min-height: 100svh;
+
+    }
+
+    .split {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: clamp(110px, 15vw, 230px);
+
+    }
+
+    .playlist-row {
+
+      display: grid;
+
+      grid-template-columns:
+
+        repeat(3, minmax(0, 1fr));
+
+      gap: clamp(22px, 3vw, 55px);
+
+    }
+
+    .hanger {
+
+      position: relative;
+
+      padding-top: 42px;
+
+      transform-origin: top center;
+
+    }
+
+    .rope {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 42px;
+
+      width: 2px;
+
+      height: 42px;
+
+      background:
+
+        linear-gradient(var(--gold),
+
+          var(--maroon));
+
+    }
+
+    .rope::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -7px;
+
+      left: -6px;
+
+      width: 14px;
+
+      height: 14px;
+
+      border: 2px solid var(--maroon);
+
+      border-radius: 50%;
+
+      background: var(--paper);
+
+    }
+
+    .hanger:hover {
+
+      animation:
+
+        wiggle 1.2s ease-in-out infinite;
+
+    }
+
+    @keyframes wiggle {
+
+      0%,
+
+      100% {
+
+        transform: rotate(0);
+
+      }
+
+      25% {
+
+        transform: rotate(-2deg);
+
+      }
+
+      75% {
+
+        transform: rotate(2deg);
+
+      }
+
+    }
+
+    .track {
+
+      min-height: 170px;
+
+      padding: clamp(22px, 2.5vw, 34px);
+
+      display: grid;
+
+      grid-template-columns:
+
+        80px 58px 1fr auto;
+
+      align-items: center;
+
+      gap: 20px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 22px;
+
+      background: #191919;
+
+      color: #fff;
+
+      box-shadow:
+
+        0 22px 55px var(--shadow);
+
+      transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease;
+
+    }
+
+    .track:hover {
+
+      transform: translateY(-9px);
+
+      box-shadow:
+
+        0 32px 70px var(--shadow);
+
+    }
+
+    .cover {
+
+      width: 80px;
+
+      height: 80px;
+
+      border-radius: 14px;
+
+      flex: none;
+
+      background:
+
+        radial-gradient(circle at 30% 25%,
+
+          #fff4 0 4%,
+
+          transparent 5%),
+
+        linear-gradient(135deg,
+
+          var(--gold),
+
+          var(--maroon));
+
+    }
+
+    .play-btn {
+
+      width: 52px;
+
+      height: 52px;
+
+      border: 0;
+
+      border-radius: 50%;
+
+      background: #1DB954;
+
+      color: #101010;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      cursor: none;
+
+      font-size: 1rem;
+
+      transition:
+
+        transform .2s ease,
+
+        background .2s ease;
+
+    }
+
+    .play-btn:hover {
+
+      transform: scale(1.1);
+
+    }
+
+    .play-btn.playing {
+
+      background: #fff;
+
+    }
+
+    .track-info {
+
+      min-width: 0;
+
+    }
+
+    .track-info b {
+
+      display: block;
+
+      font-size: clamp(.95rem, 1.2vw, 1.15rem);
+
+      font-weight: 600;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+    .track-info span {
+
+      display: block;
+
+      margin-top: 6px;
+
+      font-size: .8rem;
+
+      color: #b3b3b3;
+
+    }
+
+    .bars {
+
+      display: flex;
+
+      gap: 3px;
+
+      align-items: flex-end;
+
+      height: 20px;
+
+      opacity: 0;
+
+    }
+
+    .bars.on {
+
+      opacity: 1;
+
+    }
+
+    .bars i {
+
+      width: 4px;
+
+      background: #1DB954;
+
+      animation:
+
+        bar 1s ease-in-out infinite;
+
+    }
+
+    .bars i:nth-child(2) {
+
+      animation-delay: .15s;
+
+    }
+
+    .bars i:nth-child(3) {
+
+      animation-delay: .3s;
+
+    }
+
+    @keyframes bar {
+
+      0%,
+
+      100% {
+
+        height: 5px;
+
+      }
+
+      50% {
+
+        height: 18px;
+
+      }
+
+    }
+
+    /* ABOUT */
+    .about {
+
+      width: 100%;
+
+      max-width: 1500px;
+
+    }
+
+    .about h1 {
+
+      max-width: none;
+
+      font-size: clamp(3rem, 6.5vw, 8rem);
+
+      line-height: .96;
+
+      letter-spacing: -.045em;
+
+      font-weight: 500;
+
+    }
+
+    .tags {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 35px;
+
+    }
+
+    .tag {
+
+      padding: 9px 17px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 30px;
+
+      font-size: .85rem;
+
+      color: var(--ink-soft);
+
+    }
+
+    @media(max-width:950px) {
+
+      .playlist-row {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .track {
+
+        grid-template-columns:
+
+          75px 55px 1fr auto;
+
+      }
+
+    }
+
+    @media(max-width:600px) {
+
+      .track {
+
+        grid-template-columns:
+
+          65px 50px 1fr;
+
+        gap: 14px;
+
+      }
+
+      .cover {
+
+        width: 65px;
+
+        height: 65px;
+
+      }
+
+      .play-btn {
+
+        width: 46px;
+
+        height: 46px;
+
+      }
+
+      .bars {
+
+        display: none;
+
+      }
+
+      .about h1 {
+
+        font-size: clamp(2.8rem, 11vw, 5rem);
+
+      }
+
+    }
+
+    /* =========================================================
+   SKILLS — HANGING CARDS
+========================================================= */
+
+    #skills {
+      position: relative;
+      padding: 120px 0 150px;
+      overflow: hidden;
+    }
+
+    #skills .wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* TITLE */
+
+    #skills .h2 {
+      margin-bottom: 90px;
+      max-width: 900px;
+    }
+
+    /* GRID */
+
+    #skills .skills-grid {
+      width: 100%;
+
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+      gap: 75px 34px;
+
+      padding: 20px 0 80px;
+    }
+
+    /* CARD */
+
+    #skills .skill-card {
+      position: relative;
+
+      min-height: 210px;
+
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 55px 25px 30px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, .96),
+          rgba(245, 240, 232, .90));
+
+      border: 1px solid rgba(80, 60, 45, .13);
+
+      box-shadow:
+        0 18px 35px rgba(45, 30, 20, .12);
+
+      overflow: visible;
+
+      transition:
+        transform .45s cubic-bezier(.2, .8, .2, 1),
+        box-shadow .45s ease;
+    }
+
+    /* CARD VARIATION */
+
+    #skills .skill-card:nth-child(2),
+    #skills .skill-card:nth-child(5),
+    #skills .skill-card:nth-child(8) {
+      transform: translateY(28px);
+    }
+
+    #skills .skill-card:hover {
+      transform:
+        translateY(-10px) rotate(-1deg);
+
+      box-shadow:
+        0 28px 55px rgba(45, 30, 20, .18);
+    }
+
+    #skills .skill-card:nth-child(2):hover,
+    #skills .skill-card:nth-child(5):hover,
+    #skills .skill-card:nth-child(8):hover {
+      transform:
+        translateY(18px) rotate(1deg);
+    }
+
+    /* =========================================================
+   HANGER
+========================================================= */
+
+    #skills .hanger {
+      position: absolute;
+
+      top: -43px;
+      left: 50%;
+
+      width: 60px;
+      height: 50px;
+
+      transform: translateX(-50%);
+
+      z-index: 10;
+
+      pointer-events: none;
+    }
+
+    /* STRING */
+
+    #skills .hanger-string {
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: 2px;
+      height: 35px;
+
+      transform: translateX(-50%);
+
+      display: block;
+
+      background:
+        linear-gradient(to bottom,
+          #b96e20,
+          #e0a047);
+
+      box-shadow:
+        0 0 8px rgba(215, 145, 50, .35);
+    }
+
+    /* HOOK */
+
+    #skills .hanger-hook {
+      position: absolute;
+
+      bottom: 0;
+      left: 50%;
+
+      width: 15px;
+      height: 15px;
+
+      transform: translateX(-50%);
+
+      display: block;
+
+      border: 2px solid #d38a27;
+
+      border-radius: 50%;
+
+      background: var(--paper);
+
+      box-shadow:
+        0 0 0 4px rgba(211, 138, 39, .07),
+        0 4px 10px rgba(50, 35, 20, .15);
+    }
+
+    /* LIGHT */
+
+    #skills .hanger::after {
+      content: "";
+
+      position: absolute;
+
+      top: -25px;
+      left: 50%;
+
+      width: 100px;
+      height: 100px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          rgba(218, 150, 60, .13),
+          transparent 70%);
+
+      pointer-events: none;
+    }
+
+    /* =========================================================
+   TOOLS — HANGING DESK
+========================================================= */
+
+    #tools {
+      position: relative;
+      padding: 120px 0 160px;
+      overflow: hidden;
+    }
+
+    #tools .wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    #tools .h2 {
+      margin-bottom: 90px;
+    }
+
+    /* GRID */
+
+    #tools .tools-grid {
+      width: 100%;
+
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+      gap: 72px 34px;
+
+      padding: 20px 0 70px;
+    }
+
+    /* CARD */
+
+    #tools .tool-card {
+      position: relative;
+
+      min-height: 225px;
+
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 58px 25px 28px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, .97),
+          rgba(245, 240, 232, .91));
+
+      border: 1px solid rgba(80, 60, 45, .13);
+
+      box-shadow:
+        0 18px 38px rgba(45, 30, 20, .12);
+
+      overflow: visible;
+
+      transition:
+        transform .45s cubic-bezier(.2, .8, .2, 1),
+        box-shadow .45s ease;
+    }
+
+    /* STAGGER */
+
+    #tools .tool-card:nth-child(2),
+    #tools .tool-card:nth-child(5) {
+      transform: translateY(28px);
+    }
+
+    #tools .tool-card:hover {
+      transform:
+        translateY(-10px) rotate(-1deg);
+
+      box-shadow:
+        0 28px 55px rgba(45, 30, 20, .18);
+    }
+
+    #tools .tool-card:nth-child(2):hover,
+    #tools .tool-card:nth-child(5):hover {
+      transform:
+        translateY(18px) rotate(1deg);
+    }
+
+    /* =========================================================
+   HANGER
+========================================================= */
+
+    #tools .tool-hanger {
+      position: absolute;
+
+      top: -43px;
+      left: 50%;
+
+      width: 60px;
+      height: 50px;
+
+      transform: translateX(-50%);
+
+      z-index: 10;
+
+      pointer-events: none;
+    }
+
+    #tools .tool-string {
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: 2px;
+      height: 35px;
+
+      transform: translateX(-50%);
+
+      display: block;
+
+      background:
+        linear-gradient(to bottom,
+          #b96e20,
+          #e0a047);
+
+      box-shadow:
+        0 0 8px rgba(215, 145, 50, .35);
+    }
+
+    #tools .tool-hook {
+      position: absolute;
+
+      bottom: 0;
+      left: 50%;
+
+      width: 15px;
+      height: 15px;
+
+      transform: translateX(-50%);
+
+      display: block;
+
+      border: 2px solid #d38a27;
+
+      border-radius: 50%;
+
+      background: var(--paper);
+
+      box-shadow:
+        0 0 0 4px rgba(211, 138, 39, .07),
+        0 4px 10px rgba(50, 35, 20, .15);
+    }
+
+    /* LIGHTING */
+
+    #tools .tool-hanger::after {
+      content: "";
+
+      position: absolute;
+
+      top: -25px;
+      left: 50%;
+
+      width: 110px;
+      height: 110px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          rgba(218, 150, 60, .14),
+          transparent 70%);
+
+      pointer-events: none;
+    }
+
+    /* =========================================================
+   ICON
+========================================================= */
+
+    #tools .tool-icon {
+      width: 86px;
+      height: 86px;
+
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 18px;
+
+      border-radius: 23px;
+
+      background: #fff;
+
+      box-shadow:
+        0 12px 28px rgba(35, 25, 18, .14);
+
+      font-size: 48px;
+
+      transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+    }
+
+    #tools .tool-card:hover .tool-icon {
+      transform:
+        translateY(-5px) scale(1.07);
+
+      box-shadow:
+        0 18px 35px rgba(35, 25, 18, .20);
+    }
+
+    /* ICON COLORS */
+
+    #tools .vscode {
+      color: #007ACC;
+    }
+
+    #tools .github {
+      color: #181717;
+    }
+
+    #tools .git {
+      color: #F05032;
+    }
+
+    #tools .figma {
+      color: #F24E1E;
+    }
+
+    #tools .npm {
+      color: #CB3837;
+    }
+
+    /* VERCEL */
+
+    #tools .vercel {
+      color: #111;
+    }
+
+    #tools .vercel-logo {
+      width: 0;
+      height: 0;
+
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 43px solid currentColor;
+
+      display: block;
+    }
+
+    /* ICON SIZE */
+
+    #tools .tool-icon i {
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    /* NPM WORDMARK */
+
+    #tools .npm i {
+      font-size: 42px;
+    }
+
+    /* NAME */
+
+    #tools .tool-name {
+      display: block;
+
+      font-size: 18px;
+
+      line-height: 1.2;
+
+      font-weight: 600;
+
+      letter-spacing: .035em;
+
+      color: var(--ink);
+    }
+
+    /* DESCRIPTION */
+
+    #tools .tool-type {
+      display: block;
+
+      margin-top: 7px;
+
+      font-size: 12px;
+
+      line-height: 1.3;
+
+      letter-spacing: .10em;
+
+      text-transform: uppercase;
+
+      color: var(--ink-soft);
+
+      opacity: .75;
+    }
+
+    /* =========================================================
+   DARK MODE — TOOLS
+========================================================= */
+
+    html[data-theme="dark"] #tools .tool-card {
+      background:
+        linear-gradient(145deg,
+          rgba(34, 34, 38, .98),
+          rgba(18, 18, 21, .98));
+
+      border: 1px solid rgba(255, 255, 255, .12);
+
+      box-shadow:
+        0 22px 45px rgba(0, 0, 0, .50),
+        inset 0 1px 0 rgba(255, 255, 255, .05);
+    }
+
+    /* TOOL NAME */
+
+    html[data-theme="dark"] #tools .tool-name {
+      color: #f5eee5;
+    }
+
+    /* TOOL DESCRIPTION */
+
+    html[data-theme="dark"] #tools .tool-type {
+      color: rgba(245, 238, 229, .62);
+    }
+
+    /* ICON BOX */
+
+    html[data-theme="dark"] #tools .tool-icon {
+      background: #f5f1eb;
+
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, .45);
+    }
+
+    /* HANGER */
+
+    html[data-theme="dark"] #tools .tool-hook {
+      background: #18181b;
+
+      border-color: #d38a27;
+
+      box-shadow:
+        0 0 0 4px rgba(211, 138, 39, .10),
+        0 4px 14px rgba(0, 0, 0, .50);
+    }
+
+    /* VERCEL */
+
+    html[data-theme="dark"] #tools .vercel {
+      color: #111;
+    }
+
+    /* =========================================================
+   TABLET
+========================================================= */
+
+    @media (max-width: 900px) {
+
+      #tools .tools-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 70px 24px;
+      }
+
+    }
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 600px) {
+
+      #tools {
+        padding: 90px 0 110px;
+      }
+
+      #tools .h2 {
+        margin-bottom: 65px;
+      }
+
+      #tools .tools-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 70px;
+
+        padding:
+          20px 0 60px;
+      }
+
+      #tools .tool-card,
+      #tools .tool-card:nth-child(2),
+      #tools .tool-card:nth-child(5) {
+        transform: none;
+      }
+
+      #tools .tool-card:hover,
+      #tools .tool-card:nth-child(2):hover,
+      #tools .tool-card:nth-child(5):hover {
+        transform: translateY(-7px);
+      }
+
+    }
+
+    /* =========================================================
+   ICON
+========================================================= */
+
+    #skills .skill-icon {
+      width: 82px !important;
+      height: 82px !important;
+
+      min-width: 82px;
+      min-height: 82px;
+
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 0 20px !important;
+
+      border-radius: 22px;
+
+      background: rgba(255, 255, 255, .95);
+
+      box-shadow:
+        0 12px 28px rgba(35, 25, 18, .14);
+
+      font-size: 46px !important;
+
+      line-height: 1;
+
+      transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+    }
+
+    #skills .skill-card:hover .skill-icon {
+      transform:
+        translateY(-5px) scale(1.06);
+
+      box-shadow:
+        0 18px 35px rgba(35, 25, 18, .19);
+    }
+
+    /* LOGO COLORS */
+
+    #skills .skill-icon.html {
+      color: #E34F26;
+    }
+
+    #skills .skill-icon.css {
+      color: #1572B6;
+    }
+
+    #skills .skill-icon.js {
+      color: #F7DF1E;
+    }
+
+    #skills .skill-icon.php {
+      color: #777BB4;
+    }
+
+    #skills .skill-icon.java {
+      color: #F89820;
+    }
+
+    #skills .skill-icon.python {
+      color: #3776AB;
+    }
+
+    #skills .skill-icon.laravel {
+      color: #FF2D20;
+    }
+
+    #skills .skill-icon.react {
+      color: #61DAFB;
+    }
+
+    /* ICON ITSELF */
+
+    #skills .skill-icon i {
+      display: block;
+
+      font-size: 46px;
+
+      line-height: 1;
+    }
+
+    /* NAME */
+
+    #skills .skill-name {
+      display: block;
+
+      margin: 0;
+
+      font-size: 17px;
+
+      line-height: 1.2;
+
+      font-weight: 500;
+
+      letter-spacing: .04em;
+
+      color: var(--ink);
+    }
+
+    /* =========================================================
+   DARK MODE
+========================================================= */
+
+    :root[data-theme="dark"] #skills .skill-card {
+      background:
+        linear-gradient(145deg,
+          rgba(35, 35, 38, .96),
+          rgba(24, 24, 27, .92));
+
+      border-color:
+        rgba(255, 255, 255, .10);
+
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, .30);
+    }
+
+    :root[data-theme="dark"] #skills .skill-icon {
+      background: #f4eee5;
+    }
+
+    /* =========================================================
+   TABLET
+========================================================= */
+
+    @media (max-width: 900px) {
+
+      #skills .skills-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 70px 24px;
+      }
+
+    }
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 600px) {
+
+      #skills {
+        padding: 90px 0 110px;
+      }
+
+      #skills .h2 {
+        margin-bottom: 65px;
+      }
+
+      #skills .skills-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 70px;
+
+        padding:
+          20px 0 60px;
+      }
+
+      #skills .skill-card,
+      #skills .skill-card:nth-child(2),
+      #skills .skill-card:nth-child(5),
+      #skills .skill-card:nth-child(8) {
+        transform: none;
+      }
+
+      #skills .skill-card:hover,
+      #skills .skill-card:nth-child(2):hover,
+      #skills .skill-card:nth-child(5):hover,
+      #skills .skill-card:nth-child(8):hover {
+        transform: translateY(-7px);
+      }
+
+    }
+
+    /* =========================================================
+   PROJECTS — MARQUEE
+========================================================= */
+
+    .projects-marquee {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      margin-top: 50px;
+
+      cursor: grab;
+
+      scroll-behavior: auto;
+
+      /*
+    Penting:
+    vertical scrolling halaman tetap bisa dilakukan.
+  */
+      touch-action: pan-y;
+
+      user-select: none;
+      -webkit-user-select: none;
+
+      scrollbar-width: none;
+
+      mask-image: linear-gradient(to right,
+          transparent,
+          black 5%,
+          black 95%,
+          transparent);
+
+      -webkit-mask-image: linear-gradient(to right,
+          transparent,
+          black 5%,
+          black 95%,
+          transparent);
+    }
+
+    .projects-marquee::-webkit-scrollbar {
+      display: none;
+    }
+
+    .projects-marquee.dragging {
+      cursor: grabbing;
+    }
+
+    /* =========================================================
+   TRACK
+========================================================= */
+
+    .projects-track {
+      display: flex;
+
+      gap: 30px;
+
+      width: max-content;
+
+      animation: none;
+    }
+
+
+    /* =========================================================
+   CARD
+========================================================= */
+
+    .proj-card {
+      flex: 0 0 420px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--line);
+
+      border-radius: 18px;
+
+      background: var(--card);
+
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-8px);
+
+      box-shadow:
+        0 25px 60px var(--shadow);
+    }
+
+
+    /* =========================================================
+   LINK
+========================================================= */
+
+    .proj-card>a {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      color: inherit;
+
+      text-decoration: none;
+
+      cursor: pointer;
+    }
+
+
+    /*
+  Saat sedang drag, cursor berubah.
+*/
+    .projects-marquee.dragging .proj-card>a {
+      cursor: grabbing;
+    }
+
+
+    /* =========================================================
+   THUMBNAIL
+========================================================= */
+
+    .proj-thumb {
+      width: 100%;
+
+      height: 250px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(135deg,
+          var(--maroon-deep),
+          var(--maroon));
+    }
+
+    .proj-thumb img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition:
+        transform .5s ease;
+    }
+
+    .proj-card:hover .proj-thumb img {
+      transform: scale(1.06);
+    }
+
+
+    /* =========================================================
+   BODY
+========================================================= */
+
+    .proj-body {
+      padding: 28px;
+    }
+
+    .proj-body h4 {
+      margin-bottom: 9px;
+
+      font-size: 1.4rem;
+    }
+
+    .proj-body p {
+      margin-bottom: 18px;
+
+      color: var(--ink-soft);
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+   VIEW PROJECT
+========================================================= */
+
+    .proj-body .project-link {
+      display: inline-block;
+
+      border-bottom: 1px solid var(--maroon);
+
+      color: var(--maroon);
+
+      font-size: .9rem;
+
+      transition:
+        color .25s ease,
+        border-color .25s ease;
+    }
+
+    .proj-card:hover .project-link {
+      color: var(--maroon-deep);
+    }
+
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 760px) {
+
+      .proj-card {
+        flex-basis: 320px;
+      }
+
+      .proj-thumb {
+        height: 200px;
+      }
+
+      .projects-track {
+        gap: 20px;
+      }
+
+    }
+
+    /* =========================================================
+&#xA0;  FOOTER
+*========================================================= */
+    footer {
+
+      min-height: auto;
+
+      padding:
+
+        clamp(90px, 10vw, 150px) 0 55px;
+
+      border-radius:
+
+        36px 36px 0 0;
+
+      background: var(--footer-bg);
+
+      color: var(--footer-text);
+
+    }
+
+    footer .h2 {
+
+      max-width: 11ch;
+
+      color: var(--footer-text);
+
+    }
+
+    footer .eyebrow {
+
+      color: var(--footer-muted);
+
+    }
+
+    .contact-grid {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 45px;
+
+      margin-top: 65px;
+
+      padding-top: 40px;
+
+      border-top:
+
+        1px solid var(--footer-muted);
+
+    }
+
+    .contact-item {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+    }
+
+    .contact-item span {
+
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: var(--footer-muted);
+
+      font-size: .75rem;
+
+    }
+
+    .contact-item b {
+
+      font-size: 1rem;
+
+      font-weight: 500;
+
+    }
+
+    .ig-avatar {
+
+      width: 55px;
+
+      height: 55px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+
+        linear-gradient(135deg,
+
+          var(--gold-soft),
+
+          var(--maroon));
+
+      color: #fff;
+
+      font-family: 'Fraunces', serif;
+
+      font-weight: 600;
+
+    }
+
+    .footer-layout {
+      display: block;
+    }
+
+    .footer-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 45px;
+    }
+
+    .footer-heading {
+      min-width: 0;
+    }
+
+    .footer-heading .h2 {
+      max-width: 750px;
+    }
+
+    /* FOTO POTRET */
+    .footer-portrait {
+      position: relative;
+      width: 100%;
+      height: 390px;
+      overflow: hidden;
+      border-radius: 160px 160px 12px 12px;
+      background: #222;
+    }
+
+    .footer-portrait img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .footer-portrait:hover img {
+      transform: scale(1.06);
+    }
+
+    /* CAPTION FOTO */
+    .portrait-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 35px 18px 18px;
+      color: white;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      background: linear-gradient(transparent,
+          rgba(0, 0, 0, 0.75));
+    }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      .footer-hero {
+        grid-template-columns: minmax(0, 1fr) 230px;
+        gap: 30px;
+      }
+
+      .footer-portrait {
+        height: 320px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      .footer-hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-portrait {
+        width: min(100%, 280px);
+        height: 350px;
+        justify-self: center;
+      }
+    }
+
+    .bottom-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+
+      margin-top: 80px;
+
+      color: var(--footer-muted);
+
+      font-size: .78rem;
+
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      padding: 18px 0;
+      color: inherit;
+      text-decoration: none;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-item:hover {
+      opacity: 0.7;
+      transform: none;
+    }
+
+    .contact-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      font-size: 25px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .contact-info>span {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    .contact-info b {
+      font-size: 14px;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-info small {
+      font-size: 11px;
+      opacity: 0.5;
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      font-size: 15px;
+      opacity: 0.5;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover .contact-arrow {
+      transform: translate(3px, -3px);
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    @media(max-width:600px) {
+
+      .footer-hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-photo {
+        justify-content: flex-start;
+      }
+
+      .footer-photo img {
+        width: 180px;
+      }
+
+      .contact-grid {
+
+        flex-direction: column;
+
+        gap: 25px;
+
+      }
+
+    }
+
+    /* =========================================================
+&#xA0;  REDUCED MOTION
+*========================================================= */
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+
+      *::before,
+
+      *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: .01ms !important;
+
+      }
+
+    }
+
+    /* =========================================================
+       REDESIGN — PLAYLIST / ABOUT / TOOLS / SKILLS
+    ========================================================= */
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      align-items: center;
+      gap: clamp(55px, 7vw, 120px);
+    }
+
+    .playlist-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .about {
+      width: 100%;
+      max-width: 560px;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .about .eyebrow {
+      margin-bottom: 20px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .about h1 {
+      max-width: 25ch;
+      margin-left: auto;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.35rem, 2.05vw, 2.25rem);
+      line-height: 1.5;
+      font-weight: 500;
+      letter-spacing: .035em;
+      color: var(--ink);
+    }
+
+    .tags {
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .tag {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      color: var(--ink-soft);
+      background: color-mix(in srgb, var(--paper) 70%, transparent);
+      backdrop-filter: blur(8px);
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 8px 25px var(--shadow), 0 0 18px color-mix(in srgb, var(--gold) 25%, transparent);
+    }
+
+    .hanger {
+      padding-top: 34px;
+    }
+
+    .rope {
+      left: 50%;
+      height: 34px;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--gold) 45%, transparent);
+    }
+
+    .rope::before {
+      left: 50%;
+      transform: translateX(-50%);
+      border-color: var(--gold);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--gold) 45%, transparent);
+    }
+
+    .track {
+      min-height: 145px;
+      padding: 24px 28px;
+      grid-template-columns: 72px 52px 1fr auto;
+      gap: 18px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015)),
+        #191919;
+      position: relative;
+      overflow: hidden;
+      transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease, border-color .4s ease;
+    }
+
+    .track::before {
+      content: '';
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      top: -110px;
+      right: -55px;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--gold) 25%, transparent), transparent 70%);
+      pointer-events: none;
+    }
+
+    .track:hover {
+      transform: translateY(-8px);
+      border-color: color-mix(in srgb, var(--gold) 50%, var(--line));
+      box-shadow: 0 28px 60px var(--shadow), 0 0 35px color-mix(in srgb, var(--gold) 12%, transparent);
+    }
+
+    .cover {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .35);
+    }
+
+    #tools,
+    #skills {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #tools::before,
+    #skills::before {
+      content: '';
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--gold) 10%, transparent), transparent 68%);
+      pointer-events: none;
+    }
+
+    .chip-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 34px;
+      margin-top: 70px;
+    }
+
+    .chip {
+      position: relative;
+      min-height: 190px;
+      padding: 50px 20px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(145deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--paper) 70%, transparent));
+      backdrop-filter: blur(14px);
+      box-shadow: 0 15px 35px var(--shadow);
+      font-size: 1rem;
+      font-weight: 500;
+      transform-origin: top center;
+      transition: transform .45s cubic-bezier(.22, 1, .36, 1), box-shadow .45s ease, border-color .45s ease;
+    }
+
+    .chip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 34px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--gold), var(--maroon));
+      box-shadow: 0 0 14px color-mix(in srgb, var(--gold) 40%, transparent);
+    }
+
+    .chip::after {
+      content: '';
+      position: absolute;
+      top: 27px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      transform: translateX(-50%);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--gold) 45%, transparent);
+    }
+
+    .chip:hover {
+      transform: translateY(-10px) rotate(-1deg);
+      border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+      box-shadow: 0 25px 50px var(--shadow), 0 0 35px color-mix(in srgb, var(--gold) 13%, transparent);
+    }
+
+    .chip:hover .logo {
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .3), 0 0 28px color-mix(in srgb, var(--gold) 22%, transparent);
+    }
+
+    .logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      font-size: 1.15rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .25), 0 0 25px rgba(255, 255, 255, .06);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .chip:nth-child(2),
+    .chip:nth-child(5),
+    .chip:nth-child(8) {
+      transform: translateY(22px);
+    }
+
+    .chip:nth-child(2):hover,
+    .chip:nth-child(5):hover,
+    .chip:nth-child(8):hover {
+      transform: translateY(10px) rotate(1deg);
+    }
+
+    /* Extra visual anchor so large sections don't feel empty. */
+    #tools .wrap,
+    #skills .wrap {
+      position: relative;
+    }
+
+    #tools .wrap::after,
+    #skills .wrap::after {
+      content: '01 — 08';
+      position: absolute;
+      right: 0;
+      top: 0;
+      writing-mode: vertical-rl;
+      font-size: .65rem;
+      letter-spacing: .22em;
+      color: var(--ink-soft);
+      opacity: .55;
+    }
+
+    @media (max-width: 950px) {
+      .split {
+        grid-template-columns: 1fr;
+        gap: 90px;
+      }
+
+      .about {
+        max-width: 700px;
+        margin-left: 0;
+        text-align: left;
+      }
+
+      .about h1 {
+        margin-left: 0;
+        max-width: 35ch;
+      }
+
+      .tags {
+        justify-content: flex-start;
+      }
+
+      .chip-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .chip:nth-child(2),
+      .chip:nth-child(5),
+      .chip:nth-child(8) {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .split {
+        gap: 65px;
+      }
+
+      .track {
+        grid-template-columns: 62px 48px 1fr;
+        padding: 20px;
+      }
+
+      .cover {
+        width: 62px;
+        height: 62px;
+      }
+
+      .bars {
+        display: none;
+      }
+
+      .about h1 {
+        font-size: 1.25rem;
+        line-height: 1.55;
+        letter-spacing: .025em;
+      }
+
+      .chip-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .chip {
+        min-height: 170px;
+      }
+
+      .chip:nth-child(2),
+      .chip:nth-child(5),
+      .chip:nth-child(8) {
+        transform: none;
+      }
+
+      #tools .wrap::after,
+      #skills .wrap::after {
+        display: none;
+      }
+    }
+
+    /* =========================================================
+       LANGUAGE SWITCHER
+    ========================================================= */
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--paper) 72%, transparent);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px var(--shadow);
+    }
+
+    .lang-btn {
+      min-width: 34px;
+      height: 30px;
+      padding: 0 8px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      font: 600 .65rem/1 'Inter', 'Noto Sans JP', sans-serif;
+      letter-spacing: .08em;
+      cursor: none;
+      transition: .25s ease;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      color: var(--paper);
+      background: var(--maroon);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--gold) 22%, transparent);
+    }
+
+    :root[data-theme="dark"] .lang-btn:hover,
+    :root[data-theme="dark"] .lang-btn.active {
+      color: #151518;
+    }
+
+    @media (max-width: 700px) {
+      .language-switcher {
+        gap: 2px;
+      }
+
+      .lang-btn {
+        min-width: 29px;
+        padding: 0 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .chip,
+      .track,
+      .tag {
+        transition: none;
+      }
+
+      /* =========================================================
+   TOOLS — DARK MODE FIX
+========================================================= */
+
+      body.dark #tools .tool-card,
+      .dark #tools .tool-card,
+      [data-theme="dark"] #tools .tool-card {
+        background:
+          linear-gradient(145deg,
+            rgba(31, 31, 34, 0.97),
+            rgba(20, 20, 23, 0.97));
+
+        border: 1px solid rgba(255, 255, 255, .10);
+
+        box-shadow:
+          0 20px 45px rgba(0, 0, 0, .45),
+          inset 0 1px 0 rgba(255, 255, 255, .04);
+      }
+
+      /* TEXT */
+
+      body.dark #tools .tool-name,
+      body.dark #tools .tool-type,
+      .dark #tools .tool-name,
+      .dark #tools .tool-type,
+      [data-theme="dark"] #tools .tool-name,
+      [data-theme="dark"] #tools .tool-type {
+        color: #f5eee5;
+      }
+
+      /* DESCRIPTION */
+
+      body.dark #tools .tool-type,
+      .dark #tools .tool-type,
+      [data-theme="dark"] #tools .tool-type {
+        color: rgba(245, 238, 229, .55);
+      }
+
+      /* ICON BOX */
+
+      body.dark #tools .tool-icon,
+      .dark #tools .tool-icon,
+      [data-theme="dark"] #tools .tool-icon {
+        background: #f5f1eb;
+
+        box-shadow:
+          0 12px 30px rgba(0, 0, 0, .35);
+      }
+
+      /* HANGER */
+      body.dark #tools .tool-hook,
+      .dark #tools .tool-hook,
+      [data-theme="dark"] #tools .tool-hook {
+        background: #1f1f22;
+
+        border-color: #d38a27;
+      }
+
+      /* VERCEL */
+
+      body.dark #tools .vercel,
+      .dark #tools .vercel,
+      [data-theme="dark"] #tools .vercel {
+        color: #111;
+      }
+
+      /* =========================================================
+   TOOLS — FINAL DARK MODE
+========================================================= */
+
+      :root[data-theme="dark"] #tools .tool-card {
+        background: linear-gradient(145deg,
+            #29292d 0%,
+            #17171a 100%) !important;
+
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+
+        box-shadow:
+          0 20px 45px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+      }
+
+      /* TOOL NAME */
+
+      :root[data-theme="dark"] #tools .tool-name {
+        color: #f5eee5 !important;
+      }
+
+      /* TOOL TYPE */
+
+      :root[data-theme="dark"] #tools .tool-type {
+        color: rgba(245, 238, 229, 0.62) !important;
+      }
+
+      /* ICON */
+
+      :root[data-theme="dark"] #tools .tool-icon {
+        background: #f5f1eb !important;
+
+        box-shadow:
+          0 12px 30px rgba(0, 0, 0, 0.45) !important;
+      }
+
+      /* HANGER */
+
+      :root[data-theme="dark"] #tools .tool-hanger {
+        background: transparent !important;
+      }
+
+      /* STRING */
+
+      :root[data-theme="dark"] #tools .tool-string {
+        background: #d38a27 !important;
+
+        box-shadow:
+          0 0 12px rgba(211, 138, 39, 0.55) !important;
+      }
+
+      /* HOOK */
+
+      :root[data-theme="dark"] #tools .tool-hook {
+        background: #17171a !important;
+
+        border-color: #d38a27 !important;
+
+        box-shadow:
+          0 0 0 4px rgba(211, 138, 39, 0.10),
+          0 4px 14px rgba(0, 0, 0, 0.55) !important;
+      }
+
+      /* VERCEL LOGO */
+
+      :root[data-theme="dark"] #tools .vercel {
+        color: #111 !important;
+      }
+    }
+
+    /* MUSIC REDESIGN — FEATURED PLAYER + COMPACT QUEUE */
+    .playlist-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      align-items: start;
+      gap: clamp(55px, 7vw, 120px)
+    }
+
+    .music-column {
+      min-width: 0
+    }
+
+    .now-playing-card {
+      position: relative;
+      min-height: 285px;
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      align-items: center;
+      gap: 30px;
+      padding: 30px;
+      margin-top: 24px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--gold) 28%, var(--line));
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .018)), #191919;
+      color: #fff;
+      box-shadow: 0 28px 75px var(--shadow), 0 0 40px color-mix(in srgb, var(--gold) 8%, transparent)
+    }
+
+    .now-playing-cover {
+      width: 180px;
+      aspect-ratio: 1;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--gold-soft), var(--maroon));
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, .38);
+      position: relative;
+      z-index: 2
+    }
+
+    .now-playing-main {
+      position: relative;
+      z-index: 2;
+      min-width: 0
+    }
+
+    .now-playing-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold-soft);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .22em
+    }
+
+    .now-playing-main h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      font-weight: 600
+    }
+
+    .now-playing-main p {
+      margin: 8px 0 24px;
+      color: #aaa;
+      font-size: .9rem
+    }
+
+    .player-progress {
+      width: 100%;
+      max-width: 520px
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .16);
+      overflow: hidden;
+      cursor: pointer
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--gold);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--gold) 50%, transparent)
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7px;
+      color: #777;
+      font-size: .65rem;
+      font-variant-numeric: tabular-nums
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px
+    }
+
+    .control-btn,
+    .main-play-btn {
+      border: 1px solid rgba(255, 255, 255, .16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease
+    }
+
+    .control-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: transparent;
+      color: #aaa;
+      font-size: 1.5rem;
+      line-height: 1
+    }
+
+    .main-play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #171717;
+      border-color: var(--gold);
+      font-size: 1rem;
+      padding-left: 2px
+    }
+
+    .control-btn:hover,
+    .main-play-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold)
+    }
+
+    .control-btn:hover {
+      color: #fff
+    }
+
+    .now-playing-glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -90px;
+      top: -100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--gold) 20%, transparent), transparent 68%);
+      pointer-events: none
+    }
+
+    .queue-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 32px 2px 12px;
+      color: var(--ink-soft);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .18em
+    }
+
+    .queue-heading small {
+      color: var(--ink-soft);
+      font-size: .58rem;
+      letter-spacing: .12em;
+      opacity: .65
+    }
+
+    .music-queue {
+      display: grid;
+      gap: 7px;
+      max-height: 345px;
+      overflow-y: auto;
+      padding-right: 5px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent
+    }
+
+    .queue-track {
+      min-width: 0;
+      min-height: 66px;
+      display: grid;
+      grid-template-columns: 30px 46px minmax(0, 1fr) 36px;
+      align-items: center;
+      gap: 13px;
+      padding: 9px 12px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--paper) 4%, transparent);
+      color: var(--ink);
+      transition: background .25s ease, border-color .25s ease, transform .25s ease
+    }
+
+    .queue-track:hover {
+      transform: translateX(3px);
+      border-color: color-mix(in srgb, var(--gold) 28%, var(--line));
+      background: color-mix(in srgb, var(--paper) 8%, transparent)
+    }
+
+    .queue-track.active {
+      border-color: color-mix(in srgb, var(--gold) 35%, var(--line));
+      background: color-mix(in srgb, var(--gold) 7%, transparent)
+    }
+
+    .queue-number {
+      color: var(--ink-soft);
+      font-size: .62rem;
+      font-variant-numeric: tabular-nums;
+      opacity: .7
+    }
+
+    .queue-cover {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-soft), var(--maroon));
+      background-size: cover;
+      background-position: center
+    }
+
+    .queue-info {
+      min-width: 0
+    }
+
+    .queue-info b,
+    .queue-info span {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis
+    }
+
+    .queue-info b {
+      color: var(--ink);
+      font-size: .82rem;
+      font-weight: 600
+    }
+
+    .queue-info span {
+      margin-top: 3px;
+      color: var(--ink-soft);
+      font-size: .68rem
+    }
+
+    .queue-play {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: .65rem;
+      transition: .25s ease
+    }
+
+    .queue-play:hover,
+    .queue-track.active .queue-play {
+      color: #171717;
+      border-color: var(--gold);
+      background: var(--gold)
+    }
+
+    @media(max-width:950px) {
+      .playlist-layout {
+        grid-template-columns: 1fr;
+        gap: 80px
+      }
+
+      .about {
+        max-width: 700px;
+        margin-left: 0;
+        text-align: left
+      }
+
+      .about h1 {
+        margin-left: 0
+      }
+
+      .tags {
+        justify-content: flex-start
+      }
+    }
+
+    @media(max-width:600px) {
+      .now-playing-card {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 20px
+      }
+
+      .now-playing-cover {
+        width: min(180px, 65vw)
+      }
+
+      .music-queue {
+        max-height: 310px
+      }
+
+      .queue-track {
+        grid-template-columns: 25px 42px minmax(0, 1fr) 32px;
+        gap: 10px;
+        min-height: 61px
+      }
+
+      .queue-cover {
+        width: 42px;
+        height: 42px
+      }
+    }
+
+    /* =========================================================
+       QUEUE — MOUSE WHEEL SCROLL
+    ========================================================= */
+    .music-queue {
+      max-height: 345px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 6px;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+      scroll-behavior: smooth;
+    }
+
+    .music-queue::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .music-queue::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .music-queue::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 999px;
+    }
+
+    .music-queue::-webkit-scrollbar-thumb:hover {
+      background: var(--ink);
+    }
+
+    /* =========================================================
+       CUSTOM LAYOUT — PLAYLIST / QUEUE / ABOUT / ACHIEVEMENTS
+       ========================================================= */
+    .playlist-dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      grid-template-areas: "playlist queue" "about achievements";
+      align-items: start;
+      gap: clamp(65px, 7vw, 110px) clamp(45px, 5vw, 85px);
+    }
+
+    .playlist-dashboard .music-column {
+      grid-area: playlist;
+      min-width: 0
+    }
+
+    .playlist-dashboard .queue-column {
+      grid-area: queue;
+      min-width: 0
+    }
+
+    .playlist-dashboard .about {
+      grid-area: about;
+      min-width: 0
+    }
+
+    .playlist-dashboard .achievement-panel {
+      grid-area: achievements;
+      min-width: 0
+    }
+
+    /* QUEUE — RIGHT COLUMN */
+    .queue-column .queue-heading {
+      margin-top: 0
+    }
+
+    .queue-column .music-queue {
+      max-height: 620px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    /* ABOUT — FULL LEFT COLUMN */
+    .playlist-dashboard .about {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      text-align: left;
+    }
+
+    .playlist-dashboard .about .eyebrow {
+      text-align: left;
+    }
+
+    .playlist-dashboard .about h1 {
+      max-width: none;
+      margin: 0;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.55rem, 2.35vw, 2.75rem);
+      line-height: 1.45;
+      font-weight: 500;
+      letter-spacing: .015em;
+    }
+
+    .playlist-dashboard .about .tags {
+      justify-content: flex-start;
+    }
+
+    /* ACHIEVEMENT — STACKED CARDS */
+    .achievement-panel {
+      min-width: 0
+    }
+
+    .achievement-stack {
+      position: relative;
+      min-height: 410px;
+      margin-top: 24px
+    }
+
+    .achievement-card {
+      position: absolute;
+      width: min(100%, 470px);
+      min-height: 170px;
+      padding: 28px 30px;
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: 0 24px 55px var(--shadow);
+      transform-origin: center;
+      transition: transform .4s ease, box-shadow .4s ease
+    }
+
+    .achievement-card small {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--gold);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em
+    }
+
+    .achievement-card h3 {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.45vw, 1.35rem);
+      line-height: 1.25;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .achievement-card p {
+      margin-top: 7px;
+      color: var(--ink-soft);
+      font-size: .75rem;
+      line-height: 1.5
+    }
+
+    .achievement-number {
+      display: flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: .65rem;
+      font-weight: 700
+    }
+
+    .achievement-card-main {
+      top: 0;
+      left: 0;
+      z-index: 3;
+      transform: rotate(-2deg)
+    }
+
+    .achievement-card-back {
+      top: 112px;
+      left: 7%;
+      z-index: 2;
+      transform: rotate(2.5deg)
+    }
+
+    .achievement-card-third {
+      top: 224px;
+      left: 14%;
+      z-index: 1;
+      transform: rotate(-1.5deg)
+    }
+
+    .achievement-card:hover {
+      z-index: 10;
+      transform: translateY(-10px) rotate(0);
+      box-shadow: 0 32px 70px var(--shadow)
+    }
+
+    :root[data-theme="dark"] .achievement-card {
+      background: linear-gradient(145deg, #242428, #18181b);
+      border-color: rgba(255, 255, 255, .1)
+    }
+
+    /* SKILLS + TOOLS — MARQUEE */
+    #skills .skills-grid,
+    #tools .tools-grid {
+      display: flex !important;
+      width: max-content;
+      grid-template-columns: none !important;
+      gap: 28px;
+      margin-top: 55px;
+      padding: 25px 0 70px;
+      animation: cardsMarquee 28s linear infinite;
+      will-change: transform
+    }
+
+    #tools .tools-grid {
+      animation-duration: 24s
+    }
+
+    #skills .skills-grid:hover,
+    #tools .tools-grid:hover {
+      animation-play-state: paused
+    }
+
+    #skills .skill-card,
+    #tools .tool-card {
+      flex: 0 0 220px;
+      width: 220px
+    }
+
+    #skills .skill-card {
+      min-height: 190px
+    }
+
+    #tools .tool-card {
+      min-height: 205px
+    }
+
+    #skills .skill-card .hanger,
+    #tools .tool-card .tool-hanger {
+      display: none
+    }
+
+    @keyframes cardsMarquee {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(calc(-50% - 14px))
+      }
+    }
+
+    /* PROJECTS — HANGING CARDS */
+    #projects .projects-marquee {
+      overflow: visible;
+      mask-image: none;
+      -webkit-mask-image: none;
+      margin-top: 70px
+    }
+
+    #projects .projects-track {
+      gap: 55px;
+      padding: 55px 15px 90px;
+      align-items: flex-start
+    }
+
+    #projects .proj-card {
+      position: relative;
+      flex: 0 0 390px;
+      overflow: visible;
+      border: 0;
+      border-radius: 22px;
+      background: transparent;
+      box-shadow: none
+    }
+
+    #projects .proj-card>a {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      box-shadow: 0 24px 55px var(--shadow)
+    }
+
+    #projects .project-hanger {
+      position: absolute;
+      top: -55px;
+      left: 50%;
+      width: 70px;
+      height: 60px;
+      transform: translateX(-50%);
+      z-index: 8;
+      pointer-events: none
+    }
+
+    #projects .project-string {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 45px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--gold), var(--maroon));
+      box-shadow: 0 0 10px color-mix(in srgb, var(--gold) 45%, transparent)
+    }
+
+    #projects .project-hook {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      transform: translateX(-50%);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold) 10%, transparent)
+    }
+
+    #projects .proj-card:nth-child(1) {
+      transform: rotate(-2deg)
+    }
+
+    #projects .proj-card:nth-child(2) {
+      transform: translateY(25px) rotate(1.8deg)
+    }
+
+    #projects .proj-card:nth-child(3) {
+      transform: rotate(-1deg)
+    }
+
+    #projects .proj-card:nth-child(4) {
+      transform: translateY(22px) rotate(2deg)
+    }
+
+    #projects .proj-card:hover {
+      transform: translateY(-12px) rotate(0);
+      box-shadow: none
+    }
+
+    #projects .proj-card:hover>a {
+      box-shadow: 0 32px 70px var(--shadow)
+    }
+
+    @media(max-width:950px) {
+      .playlist-dashboard {
+        grid-template-columns: 1fr;
+        grid-template-areas: "playlist" "queue" "about" "achievements";
+        gap: 70px
+      }
+
+      .achievement-stack {
+        min-height: 440px
+      }
+
+      .achievement-card {
+        left: 0 !important;
+        width: 94%
+      }
+
+      .achievement-card-back {
+        top: 120px
+      }
+
+      .achievement-card-third {
+        top: 240px
+      }
+    }
+
+    @media(max-width:700px) {
+      #projects .projects-track {
+        gap: 35px;
+        padding-left: 8px
+      }
+
+      #projects .proj-card {
+        flex-basis: 320px
+      }
+
+      #projects .proj-card:nth-child(2),
+      #projects .proj-card:nth-child(4) {
+        transform: translateY(18px) rotate(1.5deg)
+      }
+
+      .achievement-stack {
+        min-height: 430px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      #skills .skills-grid,
+      #tools .tools-grid {
+        animation: none
+      }
+    }
+
+
+    /* HERO PHOTO — KEEP ORIGINAL PHOTO VISIBLE */
+    .hero-photo-frame .hero-photo {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* PROJECT CAROUSEL ARROWS */
+    #projects .projects-carousel-wrap {
+      position: relative;
+      margin-top: 55px;
+    }
+
+    #projects .projects-marquee {
+      margin-top: 0;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      mask-image: none;
+      -webkit-mask-image: none;
+      padding: 55px 8px 90px;
+    }
+
+    #projects .projects-marquee::-webkit-scrollbar {
+      display: none;
+    }
+
+    #projects .projects-track {
+      width: max-content;
+      display: flex;
+      gap: 45px;
+      padding: 0;
+      align-items: flex-start;
+    }
+
+    #projects .proj-card {
+      scroll-snap-align: start;
+    }
+
+    .project-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 20;
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--card);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 12px 30px var(--shadow);
+      transform: translateY(-50%);
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+    }
+
+    .project-arrow:hover {
+      transform: translateY(-50%) scale(1.08);
+      background: var(--maroon);
+      color: #fff;
+    }
+
+    .project-arrow.prev {
+      left: -22px;
+    }
+
+    .project-arrow.next {
+      right: -22px;
+    }
+
+    @media(max-width: 700px) {
+      #projects .projects-carousel-wrap {
+        margin-top: 40px;
+      }
+
+      #projects .projects-marquee {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .project-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+      }
+
+      .project-arrow.prev {
+        left: 4px;
+      }
+
+      .project-arrow.next {
+        right: 4px;
+      }
+    }
+
+    /* =========================================================
+       FINAL LAYOUT — PLAYLIST LEFT / QUEUE RIGHT
+       ========================================================= */
+    .playlist-dashboard {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr) !important;
+      grid-template-areas:
+        "playlist queue"
+        "about achievements" !important;
+      align-items: start !important;
+      gap: clamp(70px, 8vw, 120px) clamp(45px, 6vw, 90px) !important;
+    }
+
+    .playlist-dashboard .music-column {
+      grid-area: playlist !important;
+      min-width: 0;
+    }
+
+    .playlist-dashboard .queue-column {
+      grid-area: queue !important;
+      min-width: 0;
+    }
+
+    .queue-column .queue-heading {
+      margin: 0 2px 12px;
+    }
+
+    .queue-column .music-queue {
+      max-height: 620px !important;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .playlist-dashboard .about {
+      grid-area: about !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      text-align: left !important;
+    }
+
+    .playlist-dashboard .about .eyebrow {
+      text-align: left;
+    }
+
+    .playlist-dashboard .about h1 {
+      width: 100%;
+      max-width: none !important;
+      margin: 0 !important;
+      text-align: left !important;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.55rem, 2.35vw, 2.8rem) !important;
+      line-height: 1.48 !important;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+
+    .playlist-dashboard .about .tags {
+      justify-content: flex-start !important;
+    }
+
+    .playlist-dashboard .achievement-panel {
+      grid-area: achievements !important;
+      min-width: 0;
+    }
+
+    .playlist-dashboard .achievement-stack {
+      position: static !important;
+      min-height: 0 !important;
+      margin-top: 24px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .playlist-dashboard .achievement-card,
+    .playlist-dashboard .achievement-card-main,
+    .playlist-dashboard .achievement-card-back,
+    .playlist-dashboard .achievement-card-third {
+      position: relative !important;
+      inset: auto !important;
+      left: auto !important;
+      top: auto !important;
+      width: 100% !important;
+      min-height: 145px;
+      transform: none !important;
+    }
+
+    .playlist-dashboard .achievement-card:hover {
+      transform: translateY(-8px) !important;
+    }
+
+    @media(max-width:950px) {
+      .playlist-dashboard {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+          "playlist"
+          "queue"
+          "about"
+          "achievements" !important;
+        gap: 70px !important;
+      }
+
+      .queue-column .music-queue {
+        max-height: 500px !important;
+      }
+    }
+
+    @media(max-width:600px) {
+      .playlist-dashboard .about h1 {
+        font-size: clamp(1.35rem, 5.5vw, 2rem) !important;
+      }
+
+      .queue-column .music-queue {
+        max-height: 480px !important;
+      }
+
+      .playlist-dashboard .achievement-card,
+      .playlist-dashboard .achievement-card-main,
+      .playlist-dashboard .achievement-card-back,
+      .playlist-dashboard .achievement-card-third {
+        min-height: 135px;
+      }
+    }
+
+    /* FINAL PATCH — KEEP OVERLAPPED ACHIEVEMENTS + 4TH CARD */
+    .playlist-dashboard .about h1 {
+      font-size: clamp(1.7rem, 2.65vw, 3.15rem) !important;
+      line-height: 1.5 !important;
+      max-width: none !important;
+    }
+
+    .playlist-dashboard .achievement-stack {
+      position: relative !important;
+      display: block !important;
+      min-height: 500px !important;
+      margin-top: 24px !important;
+    }
+
+    .playlist-dashboard .achievement-card,
+    .playlist-dashboard .achievement-card-main,
+    .playlist-dashboard .achievement-card-back,
+    .playlist-dashboard .achievement-card-third,
+    .playlist-dashboard .achievement-card-fourth {
+      position: absolute !important;
+      width: min(100%, 470px) !important;
+      min-height: 170px !important;
+      margin: 0 !important;
+      padding: 28px 30px !important;
+      inset: auto !important;
+      transform-origin: center !important;
+    }
+
+    .playlist-dashboard .achievement-card-main {
+      top: 0 !important;
+      left: 0 !important;
+      z-index: 4 !important;
+      transform: rotate(-2deg) !important
+    }
+
+    .playlist-dashboard .achievement-card-back {
+      top: 112px !important;
+      left: 7% !important;
+      z-index: 3 !important;
+      transform: rotate(2.5deg) !important
+    }
+
+    .playlist-dashboard .achievement-card-third {
+      top: 224px !important;
+      left: 14% !important;
+      z-index: 2 !important;
+      transform: rotate(-1.5deg) !important
+    }
+
+    .playlist-dashboard .achievement-card-fourth {
+      top: 336px !important;
+      left: 21% !important;
+      z-index: 1 !important;
+      transform: rotate(2deg) !important
+    }
+
+    .playlist-dashboard .achievement-card:hover {
+      z-index: 10 !important;
+      transform: translateY(-10px) rotate(0deg) !important
+    }
+
+    @media(max-width:950px) {
+      .playlist-dashboard .about h1 {
+        font-size: clamp(1.6rem, 4vw, 2.5rem) !important
+      }
+
+      .playlist-dashboard .achievement-stack {
+        min-height: 500px !important
+      }
+    }
+
+    @media(max-width:600px) {
+      .playlist-dashboard .about h1 {
+        font-size: clamp(1.4rem, 6vw, 2.1rem) !important
+      }
+
+      .playlist-dashboard .achievement-stack {
+        min-height: 470px !important
+      }
+
+      .playlist-dashboard .achievement-card,
+      .playlist-dashboard .achievement-card-main,
+      .playlist-dashboard .achievement-card-back,
+      .playlist-dashboard .achievement-card-third,
+      .playlist-dashboard .achievement-card-fourth {
+        width: 94% !important;
+        min-height: 145px !important;
+        padding: 22px !important
+      }
+
+      .playlist-dashboard .achievement-card-main {
+        top: 0 !important;
+        left: 0 !important
+      }
+
+      .playlist-dashboard .achievement-card-back {
+        top: 105px !important;
+        left: 2% !important
+      }
+
+      .playlist-dashboard .achievement-card-third {
+        top: 210px !important;
+        left: 4% !important
+      }
+
+      .playlist-dashboard .achievement-card-fourth {
+        top: 315px !important;
+        left: 6% !important
+      }
+    }
+
+    /* ACHIEVEMENT PHOTOS — 4 STACKED CARDS */
+    .achievement-stack {
+      position: relative;
+      min-height: 530px !important;
+      margin-top: 24px;
+    }
+
+    .achievement-card {
+      position: absolute !important;
+      overflow: hidden;
+      isolation: isolate;
+      width: min(100%, 470px) !important;
+      min-height: 180px !important;
+      padding: 0 !important;
+      display: block !important;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: 0 24px 55px var(--shadow);
+    }
+
+    .achievement-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .78) 0%, rgba(0, 0, 0, .52) 48%, rgba(0, 0, 0, .16) 100%);
+      pointer-events: none;
+    }
+
+    .achievement-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .achievement-info {
+      position: relative;
+      z-index: 2;
+      min-height: 180px;
+      padding: 28px 30px 28px 88px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .achievement-card .achievement-number {
+      position: absolute;
+      z-index: 3;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      border-color: var(--gold);
+      background: rgba(0, 0, 0, .18);
+      backdrop-filter: blur(5px);
+    }
+
+    .achievement-card small,
+    .achievement-card h3,
+    .achievement-card p {
+      position: relative;
+      z-index: 3;
+    }
+
+    .achievement-card small {
+      color: #f3d58a
+    }
+
+    .achievement-card h3 {
+      color: #fff
+    }
+
+    .achievement-card p {
+      color: rgba(255, 255, 255, .78)
+    }
+
+    .achievement-card-main {
+      top: 0;
+      left: 0;
+      z-index: 4;
+      transform: rotate(-2deg)
+    }
+
+    .achievement-card-back {
+      top: 112px;
+      left: 7%;
+      z-index: 3;
+      transform: rotate(2.5deg)
+    }
+
+    .achievement-card-third {
+      top: 224px;
+      left: 14%;
+      z-index: 2;
+      transform: rotate(-1.5deg)
+    }
+
+    .achievement-card-fourth {
+      top: 336px;
+      left: 21%;
+      z-index: 1;
+      transform: rotate(2deg)
+    }
+
+    .achievement-card:hover {
+      z-index: 10;
+      transform: translateY(-10px) rotate(0deg) !important
+    }
+
+    .achievement-card:hover .achievement-photo {
+      transform: scale(1.06)
+    }
+
+    :root[data-theme="dark"] .achievement-card {
+      background: #18181b;
+      border-color: rgba(255, 255, 255, .1)
+    }
+
+    @media(max-width:950px) {
+      .achievement-stack {
+        min-height: 545px !important
+      }
+
+      .achievement-card {
+        left: 0 !important;
+        width: 94% !important
+      }
+
+      .achievement-card-back {
+        top: 120px
+      }
+
+      .achievement-card-third {
+        top: 240px
+      }
+
+      .achievement-card-fourth {
+        top: 360px
+      }
+    }
+
+    @media(max-width:700px) {
+      .achievement-stack {
+        min-height: 520px !important
+      }
+
+      .achievement-card {
+        min-height: 155px !important
+      }
+
+      .achievement-info {
+        min-height: 155px;
+        padding: 24px 22px 24px 76px
+      }
+
+      .achievement-card .achievement-number {
+        left: 22px;
+        width: 38px;
+        height: 38px
+      }
+
+      .achievement-card-back {
+        top: 105px
+      }
+
+      .achievement-card-third {
+        top: 210px
+      }
+
+      .achievement-card-fourth {
+        top: 315px
+      }
+    }
+
+    /* Requested layout: player + queue on the left; About + achievements on the right */
+    #playlist .playlist-dashboard {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      grid-template-areas:
+        "playlist about"
+        "queue achievements" !important;
+      align-items: start !important;
+      column-gap: clamp(30px, 5vw, 76px) !important;
+      row-gap: clamp(42px, 5vw, 70px) !important;
+    }
+
+    #playlist .playlist-dashboard>.music-column {
+      grid-area: playlist !important;
+      min-width: 0;
+    }
+
+    #playlist .playlist-dashboard>.queue-column {
+      grid-area: queue !important;
+      min-width: 0;
+    }
+
+    #playlist .playlist-dashboard>.about {
+      grid-area: about !important;
+      min-width: 0;
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      text-align: left !important;
+    }
+
+    #playlist .playlist-dashboard>.achievement-panel {
+      grid-area: achievements !important;
+      min-width: 0;
+      width: 100%;
+    }
+
+    #playlist .about .eyebrow {
+      text-align: left !important;
+    }
+
+    #playlist .about h1 {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      text-align: left !important;
+      font-size: clamp(1.2rem, 1.7vw, 1.8rem) !important;
+      line-height: 1.55 !important;
+    }
+
+    #playlist .about .tags {
+      justify-content: flex-start !important;
+    }
+
+    /* Queue is a full vertical list below the music player. */
+    #playlist .queue-heading {
+      margin-top: 0 !important;
+      margin-bottom: 14px !important;
+    }
+
+    #playlist .music-queue {
+      max-height: none !important;
+      overflow: visible !important;
+      overflow-x: hidden !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+
+    /* Flexible achievement cards support portrait and landscape images without cropping. */
+    #playlist .achievement-stack {
+      position: static !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      align-items: start !important;
+      gap: 16px !important;
+      min-height: 0 !important;
+      margin-top: 20px !important;
+    }
+
+    #playlist .achievement-stack .achievement-card {
+      position: relative !important;
+      inset: auto !important;
+      top: auto !important;
+      left: auto !important;
+      z-index: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      border: 1px solid var(--line) !important;
+      border-radius: 18px !important;
+      background: var(--card) !important;
+      box-shadow: 0 16px 36px var(--shadow) !important;
+      transform: none !important;
+      text-align: left !important;
+    }
+
+    #playlist .achievement-card::after {
+      display: none !important;
+    }
+
+    #playlist .achievement-card .achievement-photo {
+      position: static !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: 360px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      background: rgba(127, 127, 127, .08) !important;
+      transform: none !important;
+    }
+
+    #playlist .achievement-card .achievement-number {
+      position: absolute !important;
+      top: 10px !important;
+      left: 10px !important;
+      z-index: 3 !important;
+      width: 32px !important;
+      height: 32px !important;
+      transform: none !important;
+      color: var(--ink) !important;
+      background: var(--card) !important;
+      border-color: var(--gold) !important;
+    }
+
+    #playlist .achievement-card .achievement-info {
+      position: static !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      min-height: 0 !important;
+      padding: 14px !important;
+      background: var(--card) !important;
+    }
+
+    #playlist .achievement-card small {
+      position: static !important;
+      margin: 0 0 7px !important;
+      font-size: .62rem !important;
+    }
+
+    #playlist .achievement-card h3 {
+      position: static !important;
+      margin: 0 !important;
+      font-size: .95rem !important;
+      line-height: 1.4 !important;
+    }
+
+    #playlist .achievement-card p {
+      position: static !important;
+      margin: 7px 0 0 !important;
+      font-size: .78rem !important;
+      line-height: 1.5 !important;
+    }
+
+    #playlist .achievement-card:hover {
+      z-index: 2 !important;
+      transform: translateY(-4px) !important;
+    }
+
+    #playlist .achievement-card:hover .achievement-photo {
+      transform: none !important;
+    }
+
+    @media (max-width: 950px) {
+      #playlist .playlist-dashboard {
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-template-areas: "playlist" "queue" "about" "achievements" !important;
+        row-gap: 42px !important;
+      }
+
+      #playlist .about h1 {
+        font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      #playlist .achievement-stack {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 14px !important;
+      }
+
+      #playlist .achievement-card .achievement-photo {
+        max-height: none !important;
+      }
+    }
+
+
+
+    /* ACHIEVEMENT PREVIEW + FULL IMAGE VIEWER */
+    #playlist .achievement-stack .achievement-card {
+      cursor: zoom-in !important;
+    }
+
+    #playlist .achievement-card .achievement-photo {
+      height: 125px !important;
+      max-height: 125px !important;
+      object-fit: contain !important;
+      padding: 8px !important;
+      box-sizing: border-box !important;
+      background: rgba(127, 127, 127, .08) !important;
+    }
+
+    #achievement-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(10, 10, 12, .88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    #achievement-lightbox.is-open {
+      display: flex;
+    }
+
+    #achievement-lightbox .achievement-lightbox-inner {
+      position: relative;
+      width: min(1100px, 94vw);
+      height: min(88vh, 900px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    #achievement-lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .4);
+      background: #fff;
+      transform: scale(var(--achievement-zoom, 1));
+      transform-origin: center center;
+      transition: transform .12s ease;
+      flex: 0 0 auto;
+    }
+
+    #achievement-lightbox-controls {
+      position: absolute;
+      left: 50%;
+      top: 12px;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      padding: 6px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px;
+      background: rgba(20, 20, 24, .88);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .25);
+    }
+
+    #achievement-lightbox-controls button {
+      width: 36px;
+      height: 34px;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #171717;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    #achievement-zoom-level {
+      min-width: 48px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    #achievement-lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 50%;
+      background: #fff;
+      color: #171717;
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .25);
+    }
+
+    #achievement-lightbox-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -30px;
+      color: #fff;
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 560px) {
+      #playlist .achievement-card .achievement-photo {
+        height: 170px !important;
+        max-height: 170px !important;
+      }
+
+      #achievement-lightbox {
+        padding: 14px;
+      }
+
+      #achievement-lightbox .achievement-lightbox-inner {
+        width: 100%;
+        height: 84vh;
+      }
+
+      #achievement-lightbox-close {
+        top: -10px;
+        right: -5px;
+      }
+    }
+
+
+
+    /* ACHIEVEMENT GALLERY — MULTIPLE PREVIEWS, CLICK TO VIEW FULL IMAGE */
+    #playlist .achievement-panel {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery {
+      position: relative !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      align-items: stretch !important;
+      gap: 12px !important;
+      min-height: 0 !important;
+      height: auto !important;
+      margin-top: 20px !important;
+      overflow: visible !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-card,
+    #playlist .achievement-stack.achievement-gallery .achievement-card-main,
+    #playlist .achievement-stack.achievement-gallery .achievement-card-back,
+    #playlist .achievement-stack.achievement-gallery .achievement-card-third,
+    #playlist .achievement-stack.achievement-gallery .achievement-card-fourth {
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 9px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 8px !important;
+      transform: none !important;
+      overflow: hidden !important;
+      border: 1px solid var(--line) !important;
+      border-radius: 18px !important;
+      background: var(--card) !important;
+      box-shadow: 0 12px 30px var(--shadow) !important;
+      cursor: zoom-in !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-photo {
+      display: block !important;
+      width: 100% !important;
+      height: 190px !important;
+      max-height: 190px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      padding: 6px !important;
+      border-radius: 12px !important;
+      background: rgba(127, 127, 127, .08) !important;
+      transition: transform .25s ease !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-card:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 18px 36px var(--shadow) !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-card:hover .achievement-photo {
+      transform: scale(1.025) !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-number {
+      position: absolute !important;
+      top: 20px !important;
+      left: 20px !important;
+      z-index: 1 !important;
+      width: 32px !important;
+      height: 32px !important;
+      border-radius: 50% !important;
+      display: grid !important;
+      place-items: center !important;
+      font-size: .72rem !important;
+      background: var(--card) !important;
+      border: 1px solid var(--line) !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-info {
+      position: static !important;
+      display: block !important;
+      padding: 0 3px 4px !important;
+      min-width: 0 !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-info small {
+      display: block !important;
+      margin: 0 0 6px !important;
+      font-size: .62rem !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-info h3 {
+      margin: 0 !important;
+      font-size: .82rem !important;
+      line-height: 1.35 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    #playlist .achievement-stack.achievement-gallery .achievement-info p {
+      margin: 6px 0 0 !important;
+      font-size: .68rem !important;
+      line-height: 1.4 !important;
+    }
+
+    @media (max-width: 900px) {
+      #playlist .achievement-stack.achievement-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #playlist .achievement-stack.achievement-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+      }
+
+      #playlist .achievement-stack.achievement-gallery .achievement-photo {
+        height: 105px !important;
+        max-height: 105px !important;
+      }
+
+      #playlist .achievement-stack.achievement-gallery .achievement-card {
+        padding: 7px !important;
+        border-radius: 13px !important;
+      }
+
+      #playlist .achievement-stack.achievement-gallery .achievement-info h3 {
+        font-size: .75rem !important;
+      }
+
+      #playlist .achievement-stack.achievement-gallery .achievement-info p {
+        font-size: .62rem !important;
+      }
+    }
+  </style>
+  </link>
+</head>
+
+<body>
+  <!-- =======================================================
+&#xA0;    CURSOR
+*======================================================= -->
+  <div class="cursor-trail" id="trail1"></div>
+  <div class="cursor-trail" id="trail2"></div>
+  <div class="cursor-trail" id="trail3"></div>
+  <div id="dot"></div>
+  <div id="ring"></div>
+  <!-- =======================================================
+&#xA0;    NAVIGATION
+*======================================================= -->
+  <nav id="nav">
+    <div class="wrap">
+      <div class="brand">
+        Michelle
+      </div>
+      <div class="navlinks">
+        <a href="#playlist">
+          <span data-i18n="navPlaylist">Playlist</span>
+        </a>
+        <a href="#tools">
+          <span data-i18n="navTools">Tools</span>
+        </a>
+        <a href="#projects">
+          Project
+        </a>
+        <a href="#contact">
+          Contact
+        </a>
+      </div>
+      <div aria-label="Language selector" class="language-switcher">
+        <button class="lang-btn active" data-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-lang="id" type="button">ID</button>
+        <button class="lang-btn" data-lang="ja" type="button">JP</button>
+      </div>
+      <button aria-label="Toggle theme" id="theme-btn" type="button">
+        ☾
+      </button>
+    </div>
+  </nav>
+  <!-- =======================================================
+&#xA0;    HERO
+*======================================================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-photo-frame">
+        <img alt="Profile photo" class="hero-photo" src="img/hero.png" />
+      </div>
+      <div>
+        <h1 class="hero-title">
+          DIGITAL ARCHIVE
+        </h1>
+        <p class="hero-name">
+          Michelle Jayanata Wibawa
+        </p>
+        <p class="hero-sub">
+          <span data-i18n="heroSub">Front-End Developer — exploring AI</span>
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- =======================================================
+&#xA0;    PLAYLIST + ABOUT
+*======================================================= -->
+  <section id="playlist">
+    <div class="wrap playlist-dashboard">
+      <div class="music-column reveal">
+        <div class="eyebrow"><span data-i18n="nowPlaying">now playing</span></div>
+        <div class="now-playing-card">
+          <div class="now-playing-cover" id="now-playing-cover"></div>
+          <div class="now-playing-main">
+            <span class="now-playing-label">NOW PLAYING</span>
+            <h2 id="now-playing-title">Ano Yume</h2>
+            <p id="now-playing-artist">YOASOBI</p>
+            <div class="player-progress">
+              <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+              <div class="time-row"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+            </div>
+            <div class="player-controls">
+              <button aria-label="Previous" class="control-btn" id="prev-btn" type="button">‹</button>
+              <button aria-label="Play" class="main-play-btn" id="main-play-btn" type="button">▶</button>
+              <button aria-label="Next" class="control-btn" id="next-btn" type="button">›</button>
+            </div>
+          </div>
+          <div class="now-playing-glow"></div>
+        </div>
+      </div>
+      <div class="queue-column reveal">
+        <div class="queue-heading"><span>QUEUE</span><small>08 TRACKS</small></div>
+        <div class="music-queue" id="music-queue">
+          <div class="queue-track" data-artist="Azume Inoue" data-audio="audio/meguru kisetsu.mp3"
+            data-cover="img/meguru.jpeg" data-title="Meguru kisetsu">
+            <span class="queue-number">03</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Meguru Kisetsu</b><span>Azume Inoue</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track active" data-artist="Kiroro" data-audio="audio/mirai e.mp3"
+            data-cover="img/mirai e cover.jpeg" data-title="mirai e">
+            <span class="queue-number">01</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Mirai e</b><span>Kiroro</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Centimillimental" data-audio="audio/yuigon.mp3"
+            data-cover="img/yuigon cover.jpeg" data-title="Yuigon">
+            <span class="queue-number">02</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Yuigon</b><span>Centimillimental</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Noriyuki Makihara" data-audio="audio/mou koi nante.mp3"
+            data-cover="img/mou koi nante.jpeg" data-title="Mou Koi Nante">
+            <span class="queue-number">04</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Mou Koi Nante</b><span>Noriyuki Makihara</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Yung Kai" data-audio="audio/yung kai - blue.mp3"
+            data-cover="img/blue.jpeg" data-title="Blue">
+            <span class="queue-number">05</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Blue</b><span>Yung Kai</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Ruth B." data-audio="audio/dandelions.mp3"
+            data-cover="img/dandelions.jpeg" data-title="Dandelions">
+            <span class="queue-number">06</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Dandelions</b><span>Ruth B.</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Yagih Mael" data-audio="audio/Mood (Lofi).mp3"
+            data-cover="img/mood.jpeg" data-title="Mood (Lofi)">
+            <span class="queue-number">07</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Mood (Lofi)</b><span>Yagih Mael</span></div><button class="queue-play"
+              type="button">▶</button>
+          </div>
+          <div class="queue-track" data-artist="Ricky Montgomery" data-audio="audio/line without a hook.mp3"
+            data-cover="img/line.jpeg" data-title="Line Without a Hook">
+            <span class="queue-number">08</span>
+            <div class="queue-cover"></div>
+            <div class="queue-info"><b>Line Without a Hook</b><span>Ricky Montgomery</span></div><button
+              class="queue-play" type="button">▶</button>
+          </div>
+        </div>
+      </div>
+      <div class="about reveal">
+        <div class="eyebrow"><span data-i18n="aboutEyebrow">about me</span></div>
+        <h1 data-i18n="aboutText">Front-End Developer who enjoys building clean, dynamic interfaces while exploring how
+          artificial intelligence can expand the way we create digital products. I’m also interested in mathematics,
+          especially problem solving, patterns, logic, and finding efficient ways to turn complex ideas into clear
+          solutions. From small experiments to digital projects, I enjoy learning, experimenting, and connecting
+          creativity with logical thinking.</h1>
+        <div class="tags">
+          <span class="tag"><span data-i18n="tagFrontend">Front-End Development</span></span>
+          <span class="tag"><span data-i18n="tagAI">AI Exploration</span></span>
+          <span class="tag"><span data-i18n="tagUIUX">UI/UX</span></span>
+        </div>
+      </div>
+      <div class="achievement-panel reveal">
+        <div class="eyebrow"><span data-i18n="achievementEyebrow">achievement</span></div>
+        <div class="achievement-stack achievement-gallery">
+          <article class="achievement-card achievement-card-main"><img alt="Achievement 1" class="achievement-photo"
+              src="img/achievement1.jpeg" />
+            <span class="achievement-number">01</span>
+            <div class="achievement-info"><small>Olimpiade Harmoni Ilmu</small>
+              <h3 data-i18n="achievement1Title">[Juara 2 — Matematika]</h3>
+              <p data-i18n="achievement1Desc">[SMK/SMA/KULIAH / 2026]</p>
+            </div>
+          </article>
+          <article class="achievement-card achievement-card-back"><img alt="Achievement 2" class="achievement-photo"
+              src="img/achievement5.png" />
+            <span class="achievement-number">02</span>
+            <div class="achievement-info"><small>Olimpiade Siswa Indonesia (OSI)</small>
+              <h3 data-i18n="achievement2Title">[Medali Perak — Kimia]</h3>
+              <p data-i18n="achievement2Desc">[SMK/SMA/KULIAH / 2026]</p>
+            </div>
+          </article>
+          <article class="achievement-card achievement-card-third"><img alt="Achievement 3" class="achievement-photo"
+              src="img/achievement6.png" />
+            <span class="achievement-number">03</span>
+            <div class="achievement-info"><small>Olimpiade Siswa Indonesia (OSI)</small>
+              <h3 data-i18n="achievement3Title">[Medali Perak — Matematika]</h3>
+              <p data-i18n="achievement3Desc">[SMK/SMA/KULIAH / 2026]</p>
+            </div>
+          </article>
+          <article class="achievement-card achievement-card-fourth"><img alt="Achievement 4" class="achievement-photo"
+              src="img/achievement4.jpeg" />
+            <span class="achievement-number">04</span>
+            <div class="achievement-info"><small>Olimpiade Cita Cerdas Indonesia</small>
+              <h3 data-i18n="achievement4Title">[Juara 1 — IPA]</h3>
+              <p data-i18n="achievement4Desc">[SMP/MTS / 2025]</p>
+            </div>
+          </article>
+          <article class="achievement-card achievement-card-fourth"><img alt="Achievement 5" class="achievement-photo"
+              src="img/achievement2.jpeg" />
+            <span class="achievement-number">05</span>
+            <div class="achievement-info"><small>Olimpiade Edukasi Nusantara</small>
+              <h3 data-i18n="achievement5Title">[Juara 3 — Matematika]</h3>
+              <p data-i18n="achievement5Desc">[SMP/MTS / 2025 ]</p>
+            </div>
+          </article>
+          <article class="achievement-card achievement-card-fourth"><img alt="Achievement 6" class="achievement-photo"
+              src="img/achievement3.jpeg" />
+            <span class="achievement-number">06</span>
+            <div class="achievement-info"><small>Olimpiade Cita Cerdas Indonesia</small>
+              <h3 data-i18n="achievement6Title">[Juara 3 — Matematika]</h3>
+              <p data-i18n="achievement6Desc">[SMP/MTS / 2024 ]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="tools">
+    <div class="wrap reveal">
+      <div class="eyebrow">
+        <span data-i18n="toolsEyebrow">tools</span>
+      </div>
+      <h2 class="h2">
+        <span data-i18n="toolsTitle">Tools on my desk</span>
+      </h2>
+      <div class="tools-grid">
+        <!-- VS CODE -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon vscode">
+            <i class="devicon-vscode-plain"></i>
+          </div>
+          <span class="tool-name">VS Code</span>
+          <span class="tool-type">Editor</span>
+        </div>
+        <!-- GITHUB -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon github">
+            <i class="devicon-github-original"></i>
+          </div>
+          <span class="tool-name">GitHub</span>
+          <span class="tool-type">Version Control</span>
+        </div>
+        <!-- VERCEL -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon vercel">
+            <span class="vercel-logo"></span>
+          </div>
+          <span class="tool-name">Vercel</span>
+          <span class="tool-type">Deployment</span>
+        </div>
+        <!-- GIT -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon git">
+            <i class="devicon-git-plain"></i>
+          </div>
+          <span class="tool-name">Git</span>
+          <span class="tool-type">Version Control</span>
+        </div>
+        <!-- NPM -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon npm">
+            <i class="devicon-npm-original-wordmark"></i>
+          </div>
+          <span class="tool-name">npm</span>
+          <span class="tool-type">Package Manager</span>
+        </div>
+        <!-- FIGMA -->
+        <div class="tool-card">
+          <div class="tool-hanger">
+            <span class="tool-string"></span>
+            <span class="tool-hook"></span>
+          </div>
+          <div class="tool-icon figma">
+            <i class="devicon-figma-plain"></i>
+          </div>
+          <span class="tool-name">Figma</span>
+          <span class="tool-type">UI / UX Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =======================================================
+&#xA0;    SKILLS
+*======================================================= -->
+  <section id="skills">
+    <div class="wrap reveal">
+      <div class="eyebrow">
+        <span data-i18n="skillsEyebrow">skills</span>
+      </div>
+      <h2 class="h2">
+        <span data-i18n="skillsTitle">What I work with</span>
+      </h2>
+      <div class="skills-grid">
+        <!-- HTML -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon html">
+            <i class="devicon-html5-plain"></i>
+          </div>
+          <span class="skill-name">HTML</span>
+        </div>
+        <!-- CSS3 -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon css">
+            <i class="devicon-css3-plain"></i>
+          </div>
+          <span class="skill-name">CSS</span>
+        </div>
+        <!-- JavaScript -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon js">
+            <i class="devicon-javascript-plain"></i>
+          </div>
+          <span class="skill-name">JavaScript</span>
+        </div>
+        <!-- PHP -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon php">
+            <i class="devicon-php-plain"></i>
+          </div>
+          <span class="skill-name">PHP</span>
+        </div>
+        <!-- Java -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon java">
+            <i class="devicon-java-plain"></i>
+          </div>
+          <span class="skill-name">Java</span>
+        </div>
+        <!-- Python -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon python">
+            <i class="devicon-python-plain"></i>
+          </div>
+          <span class="skill-name">Python</span>
+        </div>
+        <!-- Laravel -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon laravel">
+            <i class="devicon-laravel-original"></i>
+          </div>
+          <span class="skill-name">Laravel</span>
+        </div>
+        <!-- React -->
+        <div class="skill-card">
+          <div class="hanger">
+            <span class="hanger-string"></span>
+            <span class="hanger-hook"></span>
+          </div>
+          <div class="skill-icon react">
+            <i class="devicon-react-original"></i>
+          </div>
+          <span class="skill-name">React</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =======================================================
+     PROJECTS
+======================================================= -->
+  <section id="projects">
+    <div class="wrap reveal">
+      <div class="eyebrow">
+        <span data-i18n="projectsEyebrow">projects</span>
+      </div>
+      <h2 class="h2">
+        <span data-i18n="projectsTitle">Selected projects</span>
+      </h2>
+      <div class="projects-carousel-wrap">
+        <button aria-label="Previous project" class="project-arrow prev" id="project-prev" type="button">‹</button>
+        <div class="projects-marquee" id="projects-carousel">
+          <div class="projects-track">
+            <!-- PROJECT 1 -->
+            <div class="proj-card">
+              <div aria-hidden="true" class="project-hanger"><span class="project-string"></span><span
+                  class="project-hook"></span></div>
+              <a href="https://jepret-photobooth-xi.vercel.app/" rel="noopener noreferrer" target="_blank">
+                <div class="proj-thumb">
+                  <img alt="Jepret Photobooth" src="img/project 1.jpeg" />
+                </div>
+                <div class="proj-body">
+                  <h4>
+                    <span data-i18n="project1Title">
+                      Jepret - Photobooth
+                    </span>
+                  </h4>
+                  <p>
+                    <span data-i18n="project1Desc">
+                      Sistem photobooth berbasis web
+                    </span>
+                  </p>
+                  <span class="project-link" data-i18n="viewProject">
+                    View project →
+                  </span>
+                </div>
+              </a>
+            </div>
+            <!-- PROJECT 2 -->
+            <div class="proj-card">
+              <div aria-hidden="true" class="project-hanger"><span class="project-string"></span><span
+                  class="project-hook"></span></div>
+              <a href="https://revou-michelle.vercel.app/" rel="noopener noreferrer" target="_blank">
+                <div class="proj-thumb">
+                  <img alt="MJ Company RevoU Project" src="img/project2.jpeg" />
+                </div>
+                <div class="proj-body">
+                  <h4>
+                    <span data-i18n="project2Title">
+                      MJ Company - RevoU Project
+                    </span>
+                  </h4>
+                  <p>
+                    <span data-i18n="project2Desc">
+                      Mini project dari RevoU BootCamp
+                    </span>
+                  </p>
+                  <span class="project-link" data-i18n="viewProject">
+                    View project →
+                  </span>
+                </div>
+              </a>
+            </div>
+            <!-- PROJECT 3 -->
+            <div class="proj-card">
+              <div aria-hidden="true" class="project-hanger"><span class="project-string"></span><span
+                  class="project-hook"></span></div>
+              <a href="https://github.com/chele-1024/CyberCalculator.git" rel="noopener noreferrer" target="_blank">
+                <div class="proj-thumb">
+                  <img alt="Project Three" src="img/project3.jpeg" />
+                </div>
+                <div class="proj-body">
+                  <h4>
+                    <span data-i18n="project3Title">
+                      Cyber Calculator
+                    </span>
+                  </h4>
+                  <p>
+                    <span data-i18n="project3Desc">
+                      Calculator dengan tema tampilan Cyber menggunakan python.
+                    </span>
+                  </p>
+                  <span class="project-link" data-i18n="viewProject">
+                    View project →
+                  </span>
+                </div>
+              </a>
+            </div>
+            <!-- PROJECT 4 -->
+            <div class="proj-card">
+              <div aria-hidden="true" class="project-hanger"><span class="project-string"></span><span
+                  class="project-hook"></span></div>
+              <a href="https://ai-hub-omega-three.vercel.app/" rel="noopener noreferrer" target="_blank">
+                <div class="proj-thumb">
+                  <img alt="Project Four" src="img/project4.jpeg" />
+                </div>
+                <div class="proj-body">
+                  <h4>
+                    <span data-i18n="project4Title">
+                      AI Hub
+                    </span>
+                  </h4>
+                  <p>
+                    <span data-i18n="project4Desc">
+                      Semua AI Tools yang sedang trending.
+                    </span>
+                  </p>
+                  <span class="project-link" data-i18n="viewProject">
+                    View project →
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <button aria-label="Next project" class="project-arrow next" id="project-next" type="button">›</button>
+      </div>
+    </div>
+  </section>
+  <!-- =======================================================
+&#xA0;    FOOTER
+*======================================================= -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="footer-layout">
+        <div class="footer-content">
+          <div class="footer-hero">
+            <div class="footer-heading reveal">
+              <div class="eyebrow">
+                <span data-i18n="contactEyebrow">let’s collaborate</span>
+              </div>
+
+              <h2 class="h2">
+                <span data-i18n="contactTitle">
+                  LET'S CREATE SOMETHING AMAZING TOGETHER
+                </span>
+              </h2>
+            </div>
+
+            <div class="footer-portrait reveal">
+              <img src="img/pp3.jpg" alt="Michelle Jayanata">
+              <div class="portrait-caption">
+                <span>MICHELLE JAYANATA</span>
+                <span>CREATIVE DEVELOPER ↗</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-grid reveal">
+            <!-- EMAIL -->
+            <a class="contact-item" href="mailto:jayanataa24@gmail.com">
+              <div class="contact-icon">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <div class="contact-info">
+                <span data-i18n="emailLabel">Email</span>
+                <b>jayanataa24@gmail.com</b>
+                <small>Send me an email ↗</small>
+              </div>
+              <span class="contact-arrow">↗</span>
+            </a>
+
+            <!-- INSTAGRAM -->
+            <a class="contact-item" href="https://instagram.com/mj.jayanata" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <div class="contact-info">
+                <span data-i18n="instagramLabel">Instagram</span>
+                <b>@mj.jayanata</b>
+                <small>Let's connect on Instagram ↗</small>
+              </div>
+              <span class="contact-arrow">↗</span>
+            </a>
+
+            <!-- WHATSAPP -->
+            <a class="contact-item" href="https://wa.me/6285850288189" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="contact-info">
+                <span data-i18n="whatsappLabel">WhatsApp</span>
+                <b>+62 858-5028-8189</b>
+                <small>Let's have a conversation ↗</small>
+              </div>
+              <span class="contact-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-row">
+        <span>
+
+          © 2026 Michelle Jayanata
+
+        </span>
+        <span>
+          <span data-i18n="footerDetail">Designed with detail</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+  <script>
+
+    /* =========================================================
+       LANGUAGE
+    ========================================================= */
+    const translations = {
+      en: {
+        navPlaylist: 'Playlist',
+        navTools: 'Tools',
+        navProjects: 'Projects',
+        navContact: 'Contact',
+        heroSub: 'Front-End Developer — exploring AI',
+        nowPlaying: 'now playing',
+        aboutEyebrow: 'about me',
+        aboutText: 'A front-end developer who enjoys building clean, dynamic interfaces while exploring how artificial intelligence can expand the way we create digital products. I am also interested in mathematics—specifically problem-solving, patterns, and logic—and in finding efficient ways to transform complex ideas into clear solutions. Additionally, I am learning Japanese and have a strong interest in Japanese culture; I enjoy exploring new things and am always eager to discover more.',
+        tagAI: 'AI Exploration',
+        tagUIUX: 'UI/UX',
+        achievementEyebrow: 'achievement',
+        achievement1Title: '[2nd Place — Mathematics]',
+        achievement1Desc: '[Vocational High School/High School/University / 2026 ]',
+        achievement2Title: '[Silver Medal — Chemistry]',
+        achievement2Desc: '[Vocational High School/High School / 2026 ]',
+        achievement3Title: '[Silver Medal — Mathematics]',
+        achievement3Desc: '[Vocational High School/High School / 2026 ]',
+        achievement4Title: '[1st Place — Natural Sciences]',
+        achievement4Desc: '[Junior High School/Islamic Junior High School / 2025 ]',
+        achievement5Title: '[3rd Place — Mathematics]',
+        achievement5Desc: '[Junior High School/Islamic Junior High School / 2025 ]',
+        achievement6Title: '[3rd Place — Mathematics]',
+        achievement6Desc: '[Junior High School/Islamic Junior High School / 2024 ]',
+        toolsEyebrow: 'behind the scenes',
+        toolsTitle: 'Tools on my desk',
+        skillsEyebrow: 'skills',
+        skillsTitle: 'What I work with',
+        projectsEyebrow: 'projects',
+        projectsTitle: 'Selected projects',
+        project1Title: 'Jepret - Photobooth',
+        project2Title: 'MJ Company - RevoU Project',
+        project3Title: 'Cyber Calculator',
+        project4Title: 'AI Hub',
+
+        project1Desc: 'Web-based photobooth system',
+        project2Desc: 'Mini project from RevoU BootCamp',
+        project3Desc: 'Cyber-themed calculator using Python.',
+        project4Desc: 'All the AI ​​tools that are currently trending',
+
+        viewProject: 'View project →',
+        projectDesc: 'A short project description — replace this with your own story.',
+        viewProject: 'View project →',
+        contactEyebrow: 'let’s collaborate',
+        contactTitle: 'LET\'S CREATE SOMETHING AMAZING TOGETHER',
+        emailLabel: 'Email',
+        instagramLabel: 'Instagram',
+        whatsappLabel: 'WhatsApp',
+        footerDetail: 'Designed with detail'
+
+      },
+      id: {
+        navPlaylist: 'Playlist',
+        navTools: 'Tools',
+        navProjects: 'Karya',
+        navContact: 'Kontak',
+        heroSub: 'Front-End Developer — menjelajahi AI',
+        nowPlaying: 'sedang diputar',
+        aboutEyebrow: 'tentang saya',
+        aboutText: 'Front-End Developer yang suka membangun antarmuka yang bersih dan dinamis sambil mengeksplorasi bagaimana kecerdasan buatan dapat memperluas cara kita membuat produk digital. Saya juga tertarik pada matematika, terutama pemecahan masalah, pola, logika, dan mencari cara yang efisien untuk mengubah ide yang rumit menjadi solusi yang jelas. Selain itu saya juga sedang mempelajari bahasa jepang dan saya sangat tertarik pada budaya jepang. Saya dapat bereksplorasi pada hal baru dan senang bereksplorasi',
+        tagFrontend: 'Front-End Development',
+        tagAI: 'Eksplorasi AI',
+        tagUIUX: 'UI/UX',
+        achievementEyebrow: 'prestasi',
+        achievement1Title: '[Juara 2 — Matematika]',
+        achievement1Desc: '[SMK/SMA/Kuliah / 2026 ]',
+        achievement2Title: '[Medali Perak — Kimia]',
+        achievement2Desc: '[SMK/SMA / 2026 ]',
+        achievement3Title: '[Medali Perak — Matematika]',
+        achievement3Desc: '[SMK/SMA / 2026 ]',
+        achievement4Title: '[Juara 1 — IPA]',
+        achievement4Desc: '[SMP/MTS / 2025 ]',
+        achievement5Title: '[Juara 3 — Matematika]',
+        achievement5Desc: '[SMP/MTS / 2025 ]',
+        achievement6Title: '[Juara 3 — Matematika]',
+        achievement6Desc: '[SMP/MTS / 2024 ]',
+        toolsEyebrow: 'di balik layar',
+        toolsTitle: 'Perkakas di meja kerja saya',
+        skillsEyebrow: 'kemampuan',
+        skillsTitle: 'Yang saya kuasai',
+        projectsEyebrow: 'karya',
+        projectsTitle: 'Beberapa proyek',
+        project1Title: 'Jepret - Photobooth',
+        project2Title: 'MJ Company - Proyek RevoU',
+        project3Title: 'Cyber Calculator',
+        project4Title: 'AI Hub',
+
+        project1Desc: 'Sistem photobooth berbasis web',
+        project2Desc: 'Mini project dari RevoU BootCamp',
+        project3Desc: 'Calculator dengan tema tampilan Cyber menggunakan python.',
+        project4Desc: 'Semua AI Tools yang sedang trending.',
+
+        viewProject: 'Lihat proyek →',
+        projectDesc: 'Deskripsi singkat proyek — ganti dengan ceritamu sendiri.',
+        viewProject: 'Lihat proyek →',
+        contactEyebrow: 'mari berkolaborasi',
+        contactTitle: 'MARI BUAT SESUATU YANG LUAR BIASA BERSAMA',
+        emailLabel: 'Email',
+        instagramLabel: 'Instagram',
+        whatsappLabel: 'WhatsApp',
+        footerDetail: 'Dirancang dengan detail'
+      },
+      ja: {
+        navPlaylist: 'プレイリスト',
+        navTools: 'ツール',
+        navProjects: 'プロジェクト',
+        navContact: '連絡先',
+        heroSub: 'フロントエンド開発者 — AIを探求',
+        nowPlaying: '再生中',
+        aboutEyebrow: '私について',
+        aboutText: 'Kurīn de dōtekina intāfēsu no kōchiku o konomi, AI ga dejitaru seihin no seisaku shuhō o dono yō ni kakuchō dekiru ka o tankyū shite iru furonto endo kaihatsu-shadesu. Sūgaku, tokuni mondaikaiketsu, patān, ronri, soshite fukuzatsuna aidea o meikakuna soryūshon e to kōritsu-teki ni henkan suru hōhō o mitsukeru koto ni mo kanshin ga arimasu. Mata, nihongo no gakushū ya nipponbunka ni mo tsuyoi kyōmi o motte imasu. Atarashī koto e no tankyū o konomi, sōshita purosesu o tanoshiminagara torikunde imasu.',
+        tagFrontend: 'フロントエンド開発',
+        tagAI: 'AI探求',
+        tagUIUX: 'UI/UX',
+        achievementEyebrow: '実績',
+        achievement1Title: '[第2位 — 数学]',
+        achievement1Desc: '[高校・専門学校・大学 / 2026年]',
+        achievement2Title: '[銀メダル — 化学]',
+        achievement2Desc: '[高校・専門学校 / 2026年]',
+        achievement3Title: '[銀メダル — 数学]',
+        achievement3Desc: '[高校・専門学校 / 2026年]',
+        achievement4Title: '[第1位 — 理科]',
+        achievement4Desc: '[中学校 / 2025年]',
+        achievement5Title: '[第3位 — 数学]',
+        achievement5Desc: '[中学校 / 2025年]',
+        achievement6Title: '[第3位 — 数学]',
+        achievement6Desc: '[中学校 / 2024年]',
+        toolsEyebrow: '舞台裏',
+        toolsTitle: '私の作業ツール',
+        skillsEyebrow: 'スキル',
+        skillsTitle: 'できること',
+        projectsEyebrow: '制作',
+        project1Title: 'Jepret - フォトブース',
+        project2Title: 'MJ Company - RevoUプロジェクト',
+        project3Title: 'サイバー電卓',
+        project4Title: 'AIハブ',
+
+        project1Desc: 'Webベースのフォトブースシステム',
+        project2Desc: 'RevoU BootCampのミニプロジェクト',
+        project3Desc: 'Pythonを使用した、サイバー風デザインの電卓',
+        project4Desc: '現在トレンドとなっているすべてのAIツール',
+
+        viewProject: 'プロジェクトを見る →',
+        projectDesc: 'プロジェクトの簡単な説明 — あなた自身のストーリーに置き換えてください。',
+        viewProject: 'プロジェクトを見る →',
+        contactEyebrow: '一緒につくりましょう',
+        contactTitle: '一緒に素敵なものをつくりましょう',
+        emailLabel: 'メール',
+        instagramLabel: 'Instagram',
+        whatsappLabel: 'WhatsApp',
+        footerDetail: '細部まで丁寧にデザイン'
+      }
+    };
+
+    const languageButtons = document.querySelectorAll('.lang-btn');
+
+    function setLanguage(language) {
+      const dictionary = translations[language] || translations.en;
+      document.documentElement.lang = language === 'ja' ? 'ja' : language;
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) element.textContent = dictionary[key];
+      });
+
+      languageButtons.forEach(button => {
+        button.classList.toggle('active', button.dataset.lang === language);
+      });
+
+      try {
+        localStorage.setItem('language', language);
+      } catch (error) { }
+    }
+
+    languageButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    let savedLanguage = 'en';
+    try {
+      savedLanguage = localStorage.getItem('language') || 'en';
+    } catch (error) { }
+
+    setLanguage(translations[savedLanguage] ? savedLanguage : 'en');
+
+    /* =========================================================
+&#xA0;      THEME
+&#xA0;   ========================================================= */
+    const root =
+
+      document.documentElement;
+
+    const themeButton =
+
+      document.getElementById('theme-btn');
+
+    let savedTheme = null;
+
+    try {
+
+      savedTheme =
+
+        localStorage.getItem('theme');
+
+    } catch (error) {
+
+      savedTheme = null;
+
+    }
+
+    if (
+
+      savedTheme === 'dark' ||
+
+      savedTheme === 'light'
+
+    ) {
+
+      root.setAttribute(
+
+        'data-theme',
+
+        savedTheme
+
+      );
+
+    }
+
+    function updateThemeIcon() {
+
+      const isDark =
+
+        root.getAttribute('data-theme')
+
+        === 'dark';
+
+      themeButton.textContent =
+
+        isDark ? '☀' : '☾';
+
+      themeButton.setAttribute(
+        'aria-label',
+        isDark ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+
+    }
+
+    updateThemeIcon();
+
+    themeButton.addEventListener(
+
+      'click',
+
+      () => {
+
+        const isDark =
+
+          root.getAttribute('data-theme')
+
+          === 'dark';
+
+        const nextTheme =
+
+          isDark ? 'light' : 'dark';
+
+        root.setAttribute(
+
+          'data-theme',
+
+          nextTheme
+
+        );
+
+        updateThemeIcon();
+
+        try {
+
+          localStorage.setItem(
+
+            'theme',
+
+            nextTheme
+
+          );
+
+        } catch (error) { }
+
+      }
+
+    );
+
+    /* =========================================================
+&#xA0;      NAVBAR
+&#xA0;   ========================================================= */
+    const nav =
+
+      document.getElementById('nav');
+
+    function updateNav() {
+
+      nav.classList.toggle(
+
+        'solid',
+
+        window.scrollY > 40
+
+      );
+
+    }
+
+    window.addEventListener(
+
+      'scroll',
+
+      updateNav,
+
+      { passive: true }
+
+    );
+
+    updateNav();
+
+    /* =========================================================
+&#xA0;      LENIS
+&#xA0;   ========================================================= */
+    let lenis = null;
+
+    /*
+
+&#xA0;     Jangan mengubah overflow HTML/BODY
+&#xA0;     saat Lenis dijalankan.
+&#xA0;     Ini penting agar browser tetap
+&#xA0;     memiliki scroll container normal.
+&#xA0;   */
+    if (
+
+      typeof Lenis !== 'undefined' &&
+
+      !window.matchMedia(
+
+        '(prefers-reduced-motion: reduce)'
+
+      ).matches
+
+    ) {
+
+      lenis = new Lenis({
+
+        duration: 1.5,
+
+        smoothWheel: true,
+
+        smoothTouch: false,
+
+        wheelMultiplier: 0.85,
+
+        touchMultiplier: 1,
+
+        infinite: false
+
+      });
+
+      function raf(time) {
+
+        lenis.raf(time);
+
+        requestAnimationFrame(raf);
+
+      }
+
+      requestAnimationFrame(raf);
+
+      /*
+
+&#xA0;       Navbar anchor
+&#xA0;     */
+      document
+
+        .querySelectorAll(
+
+          'a[href^="#"]'
+
+        )
+
+        .forEach(link => {
+
+          link.addEventListener(
+
+            'click',
+
+            event => {
+
+              const id =
+
+                link.getAttribute('href');
+
+              if (id === '#') {
+
+                return;
+
+              }
+
+              const target =
+
+                document.querySelector(id);
+
+              if (!target) {
+
+                return;
+
+              }
+
+              event.preventDefault();
+
+              lenis.scrollTo(
+
+                target,
+
+                {
+
+                  offset: -80,
+
+                  duration: 1.6,
+
+                  easing:
+
+                    t =>
+
+                      1 -
+
+                      Math.pow(
+
+                        1 - t,
+
+                        4
+
+                      )
+
+                }
+
+              );
+
+            }
+
+          );
+
+        });
+
+    }
+
+    /*
+
+&#xA0;     Fallback apabila Lenis gagal dimuat.
+&#xA0;   */
+    if (!lenis) {
+
+      document
+
+        .querySelectorAll(
+
+          'a[href^="#"]'
+
+        )
+
+        .forEach(link => {
+
+          link.addEventListener(
+
+            'click',
+
+            event => {
+
+              const id =
+
+                link.getAttribute('href');
+
+              if (id === '#') {
+
+                return;
+
+              }
+
+              const target =
+
+                document.querySelector(id);
+
+              if (!target) {
+
+                return;
+
+              }
+
+              event.preventDefault();
+
+              target.scrollIntoView({
+
+                behavior: 'smooth',
+
+                block: 'start'
+
+              });
+
+            }
+
+          );
+
+        });
+
+    }
+
+    /* =========================================================
+&#xA0;      CUSTOM CURSOR
+&#xA0;   ========================================================= */
+    const dot =
+
+      document.getElementById('dot');
+
+    const ring =
+
+      document.getElementById('ring');
+
+    const trail1 =
+
+      document.getElementById('trail1');
+
+    const trail2 =
+
+      document.getElementById('trail2');
+
+    const trail3 =
+
+      document.getElementById('trail3');
+
+    let mouseX = 0;
+
+    let mouseY = 0;
+
+    let p1 = {
+
+      x: window.innerWidth / 2,
+
+      y: window.innerHeight / 2
+
+    };
+
+    let p2 = {
+
+      x: window.innerWidth / 2,
+
+      y: window.innerHeight / 2
+
+    };
+
+    let p3 = {
+
+      x: window.innerWidth / 2,
+
+      y: window.innerHeight / 2
+
+    };
+
+    window.addEventListener(
+
+      'mousemove',
+
+      event => {
+
+        mouseX =
+
+          event.clientX;
+
+        mouseY =
+
+          event.clientY;
+
+        dot.style.left =
+
+          mouseX + 'px';
+
+        dot.style.top =
+
+          mouseY + 'px';
+
+      }
+
+    );
+
+    function cursorLoop() {
+
+      p1.x +=
+
+        (mouseX - p1.x) * .18;
+
+      p1.y +=
+
+        (mouseY - p1.y) * .18;
+
+      p2.x +=
+
+        (p1.x - p2.x) * .14;
+
+      p2.y +=
+
+        (p1.y - p2.y) * .14;
+
+      p3.x +=
+
+        (p2.x - p3.x) * .10;
+
+      p3.y +=
+
+        (p2.y - p3.y) * .10;
+
+      trail1.style.left =
+
+        p1.x + 'px';
+
+      trail1.style.top =
+
+        p1.y + 'px';
+
+      trail2.style.left =
+
+        p2.x + 'px';
+
+      trail2.style.top =
+
+        p2.y + 'px';
+
+      trail3.style.left =
+
+        p3.x + 'px';
+
+      trail3.style.top =
+
+        p3.y + 'px';
+
+      ring.style.left =
+
+        p1.x + 'px';
+
+      ring.style.top =
+
+        p1.y + 'px';
+
+      requestAnimationFrame(
+
+        cursorLoop
+
+      );
+
+    }
+
+    cursorLoop();
+
+    /* =========================================================
+&#xA0;      CURSOR HOVER
+&#xA0;   ========================================================= */
+    document
+
+      .querySelectorAll(
+
+        'a,button,.track,.chip,.proj-card'
+
+      )
+
+      .forEach(element => {
+
+        element.addEventListener(
+
+          'mouseenter',
+
+          () => {
+
+            ring.classList.add('big');
+
+          }
+
+        );
+
+        element.addEventListener(
+
+          'mouseleave',
+
+          () => {
+
+            ring.classList.remove('big');
+
+          }
+
+        );
+
+      });
+
+    /* =========================================================
+&#xA0;      REVEAL
+&#xA0;   ========================================================= */
+    const revealObserver =
+
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(
+            entry => {
+              if (
+                entry.isIntersecting
+              ) {
+                entry.target
+                  .classList
+                  .add('show');
+                revealObserver.unobserve(
+                  entry.target
+                );
+              }
+            }
+          );
+        },
+        {
+          threshold: .12
+        }
+      );
+    document
+      .querySelectorAll('.reveal')
+      .forEach(element => {
+        revealObserver.observe(
+          element
+        );
+      });
+    /* =========================================================
+       SKILLS + TOOLS — DUPLICATE FOR SEAMLESS MARQUEE
+    ========================================================= */
+    (() => {
+      ['.skills-grid', '.tools-grid'].forEach(selector => {
+        const track = document.querySelector(selector);
+        if (!track || track.dataset.marqueeReady === 'true') return;
+
+        Array.from(track.children).forEach(item => {
+          const clone = item.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        });
+
+        track.dataset.marqueeReady = 'true';
+      });
+    })();
+
+    /* =========================================================
+       AUDIO PLAYER — FEATURED + QUEUE
+    ========================================================= */
+    const audio = new Audio();
+    audio.preload = 'metadata';
+    const queueTracks = Array.from(document.querySelectorAll('.queue-track'));
+    queueTracks.forEach(track => {
+      const cover = track.querySelector('.queue-cover');
+      if (cover && track.dataset.cover) {
+        cover.style.backgroundImage = `url("${track.dataset.cover}")`;
+      }
+    });
+    const mainPlayButton = document.getElementById('main-play-btn');
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
+    const titleEl = document.getElementById('now-playing-title');
+    const artistEl = document.getElementById('now-playing-artist');
+    const coverEl = document.getElementById('now-playing-cover');
+    const progressFill = document.getElementById('progress-fill');
+    const progressTrack = document.querySelector('.progress-track');
+    const currentTimeEl = document.getElementById('current-time');
+    const durationEl = document.getElementById('duration');
+    let currentIndex = 0;
+
+    function formatTime(seconds) { if (!Number.isFinite(seconds)) return '0:00'; const m = Math.floor(seconds / 60), s = Math.floor(seconds % 60).toString().padStart(2, '0'); return `${m}:${s}` }
+    function updatePlayingUI() { const playing = !audio.paused && !audio.ended; mainPlayButton.textContent = playing ? '❚❚' : '▶'; queueTracks.forEach((t, i) => { const b = t.querySelector('.queue-play'); if (b) b.textContent = i === currentIndex && playing ? '❚❚' : '▶' }) }
+    function setActiveTrack(index, autoplay = false) { if (!queueTracks.length) return; currentIndex = (index + queueTracks.length) % queueTracks.length; const t = queueTracks[currentIndex]; queueTracks.forEach((x, i) => x.classList.toggle('active', i === currentIndex)); titleEl.textContent = t.dataset.title; artistEl.textContent = t.dataset.artist; coverEl.style.backgroundImage = `url("${t.dataset.cover}")`; audio.pause(); audio.currentTime = 0; audio.src = t.dataset.audio; progressFill.style.width = '0%'; currentTimeEl.textContent = '0:00'; durationEl.textContent = '0:00'; mainPlayButton.textContent = '▶'; if (autoplay) audio.play().then(updatePlayingUI).catch(() => { }) }
+    mainPlayButton.addEventListener('click', () => { if (audio.paused) audio.play().then(updatePlayingUI).catch(() => { }); else { audio.pause(); updatePlayingUI() } });
+    queueTracks.forEach((t, i) => { const b = t.querySelector('.queue-play'); b.addEventListener('click', e => { e.stopPropagation(); if (i === currentIndex) { if (audio.paused) audio.play().then(updatePlayingUI).catch(() => { }); else { audio.pause(); updatePlayingUI() } } else setActiveTrack(i, true) }); t.addEventListener('click', e => { if (!e.target.closest('.queue-play')) setActiveTrack(i, true) }) });
+    prevButton.addEventListener('click', () => setActiveTrack(currentIndex - 1, true)); nextButton.addEventListener('click', () => setActiveTrack(currentIndex + 1, true));
+    audio.addEventListener('loadedmetadata', () => durationEl.textContent = formatTime(audio.duration));
+    audio.addEventListener('timeupdate', () => { if (!audio.duration) return; progressFill.style.width = `${audio.currentTime / audio.duration * 100}%`; currentTimeEl.textContent = formatTime(audio.currentTime) });
+    progressTrack.addEventListener('click', e => { if (!audio.duration) return; const r = progressTrack.getBoundingClientRect(); audio.currentTime = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * audio.duration });
+    audio.addEventListener('play', updatePlayingUI); audio.addEventListener('pause', updatePlayingUI); audio.addEventListener('ended', () => setActiveTrack(currentIndex + 1, true));
+    audio.addEventListener('error', () => console.error('Audio gagal dimuat:', queueTracks[currentIndex]?.dataset.audio));
+    setActiveTrack(Math.max(0, queueTracks.findIndex(t => t.classList.contains('active'))), false);
+
+    /* =========================================================
+       PROJECTS — ARROW CAROUSEL
+    ========================================================= */
+    (() => {
+      const carousel = document.getElementById('projects-carousel');
+      const track = carousel?.querySelector('.projects-track');
+      const prev = document.getElementById('project-prev');
+      const next = document.getElementById('project-next');
+      const cards = track ? Array.from(track.querySelectorAll('.proj-card')) : [];
+
+      if (!carousel || !track || !cards.length) return;
+
+      function step() {
+        const card = cards[0];
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        return card.getBoundingClientRect().width + gap;
+      }
+
+      function updateButtons() {
+        const max = carousel.scrollWidth - carousel.clientWidth - 2;
+        if (prev) prev.disabled = carousel.scrollLeft <= 2;
+        if (next) next.disabled = carousel.scrollLeft >= max;
+      }
+
+      prev?.addEventListener('click', () => {
+        carousel.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+
+      next?.addEventListener('click', () => {
+        carousel.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      carousel.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons);
+      updateButtons();
+    })();
+
+    /* =========================================================
+       QUEUE — MOUSE WHEEL
+    ========================================================= */
+    const musicQueue = document.getElementById('music-queue');
+    if (musicQueue) {
+      musicQueue.addEventListener('wheel', event => {
+        const canScroll = musicQueue.scrollHeight > musicQueue.clientHeight;
+        if (!canScroll) return;
+
+        const atTop = musicQueue.scrollTop <= 0;
+        const atBottom =
+          musicQueue.scrollTop + musicQueue.clientHeight >= musicQueue.scrollHeight - 1;
+
+        if ((event.deltaY < 0 && !atTop) || (event.deltaY > 0 && !atBottom)) {
+          event.preventDefault();
+          musicQueue.scrollTop += event.deltaY;
+        }
+      }, { passive: false });
+    }
+  </script>
+
+  <div id="achievement-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Achievement preview">
+    <div class="achievement-lightbox-inner">
+      <button id="achievement-lightbox-close" type="button" aria-label="Close image">&times;</button>
+      <div id="achievement-lightbox-controls" aria-label="Image zoom controls">
+        <button id="achievement-zoom-out" type="button" aria-label="Zoom out">−</button>
+        <span id="achievement-zoom-level">100%</span>
+        <button id="achievement-zoom-in" type="button" aria-label="Zoom in">+</button>
+        <button id="achievement-zoom-reset" type="button" aria-label="Reset zoom" title="Reset zoom">↺</button>
+      </div>
+      <img id="achievement-lightbox-image" alt="Full achievement image" />
+      <div id="achievement-lightbox-caption"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const lightbox = document.getElementById('achievement-lightbox');
+      const fullImage = document.getElementById('achievement-lightbox-image');
+      const caption = document.getElementById('achievement-lightbox-caption');
+      const closeButton = document.getElementById('achievement-lightbox-close');
+      const zoomIn = document.getElementById('achievement-zoom-in');
+      const zoomOut = document.getElementById('achievement-zoom-out');
+      const zoomReset = document.getElementById('achievement-zoom-reset');
+      const zoomLevel = document.getElementById('achievement-zoom-level');
+      const viewerInner = lightbox?.querySelector('.achievement-lightbox-inner');
+      const cards = document.querySelectorAll('#playlist .achievement-card');
+      if (!lightbox || !fullImage || !closeButton) return;
+      let zoom = 1;
+      function setZoom(value) {
+        zoom = Math.max(1, Math.min(4, value));
+        fullImage.style.setProperty('--achievement-zoom', zoom);
+        if (zoomLevel) zoomLevel.textContent = `${Math.round(zoom * 100)}%`;
+        fullImage.style.cursor = zoom > 1 ? 'zoom-out' : 'zoom-in';
+      }
+      function openAchievement(card) {
+        const image = card.querySelector('.achievement-photo');
+        if (!image) return;
+        fullImage.src = image.currentSrc || image.src;
+        fullImage.alt = image.alt || 'Achievement';
+        setZoom(1);
+        if (viewerInner) viewerInner.scrollTop = viewerInner.scrollLeft = 0;
+        const title = card.querySelector('h3')?.textContent.trim() || image.alt || 'Achievement';
+        caption.textContent = title;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+      function closeAchievement() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        fullImage.removeAttribute('src');
+      }
+      cards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'View achievement image in full size');
+        card.addEventListener('click', () => openAchievement(card));
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openAchievement(card);
+          }
+        });
+      });
+      zoomIn?.addEventListener('click', () => setZoom(zoom + 0.25));
+      zoomOut?.addEventListener('click', () => setZoom(zoom - 0.25));
+      zoomReset?.addEventListener('click', () => {
+        setZoom(1);
+        if (viewerInner) viewerInner.scrollTop = viewerInner.scrollLeft = 0;
+      });
+      fullImage.addEventListener('click', () => setZoom(zoom > 1 ? 1 : 2));
+      viewerInner?.addEventListener('wheel', event => {
+        if (!lightbox.classList.contains('is-open')) return;
+        event.preventDefault();
+        setZoom(zoom + (event.deltaY < 0 ? 0.15 : -0.15));
+      }, { passive: false });
+      closeButton.addEventListener('click', closeAchievement);
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) closeAchievement();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeAchievement();
+        if (lightbox.classList.contains('is-open') && (event.key === '+' || event.key === '=')) setZoom(zoom + 0.25);
+        if (lightbox.classList.contains('is-open') && event.key === '-') setZoom(zoom - 0.25);
+      });
+    })();
+  </script>
+</body>
+
+</html>
