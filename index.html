@@ -4843,6 +4843,15 @@
       #playlist .achievement-stack.achievement-gallery .achievement-info p {
         font-size: .62rem !important;
       }
+
+      /* Fix Queue scrolling di mobile */
+      .queue-list {
+        max-height: 400px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        touch-action: pan-y;
+      }
     }
   </style>
   </link>
